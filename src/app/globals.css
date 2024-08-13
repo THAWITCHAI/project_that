@@ -97,7 +97,7 @@ body {
   justify-content: center;
   /* align-items: center; */
 }
-.input-submit button{
+.input-submit button {
   cursor: pointer;
 }
 .input-submit .btn-1 {
@@ -114,9 +114,9 @@ body {
   background: #f6ae2d;
   transition: 0.25s;
 }
-.input-submit .btn-1:hover {
-  background: #ffc250;
-  width: 35%;
+.input-submit .btn-1:active {
+  transition: 0.25s;
+  transform: scale(0.9);
 }
 .input-submit .btn-2 {
   width: 20%;
@@ -131,20 +131,111 @@ body {
   margin-top: 5px;
   transition: 0.25s;
 }
-.input-submit .btn-2:hover {
+.input-submit .btn-2:active {
   background: #2fdd69;
-  width: 35%;
   transition: 0.25s;
+  transform: scale(0.9);
 }
 .signin {
   border-bottom: 1px solid rgba(255, 255, 255, 0.39);
 }
 
-
 /* Register */
 
-.register{
-  border: 1px solid white;
+.register {
+  border: none;
   height: 90%;
   width: 80%;
+  background-color: rgba(255, 255, 255, 0.185);
+  border-radius: 2rem;
+  backdrop-filter: blur(10px);
+}
+.register .register-image {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register .register-image .Image{
+
+  transition: 0.25s;
+}
+.register .register-image .Image:hover{
+  width: 140px;
+  height: 140px;
+  transition: 0.25s;
+}
+.register .form-register {
+  height: 80%;
+}
+.input-register {
+  width: 100%;
+  height: 40%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 150px);
+}
+.btn-register {
+  width: 100%;
+  height: 30%;
+}
+.input-1 {
+  height: 7rem;
+  width: 20rem;
+  padding: 1rem;
+}
+.input-1 input {
+  height: 50%;
+  width: 100%;
+  color: #000;
+}
+.input-1 .input-file {
+  padding-top: 0.5rem;
+  padding-left: 10%;
+  padding-right: 10%;
+  border-bottom: 1px solid white;
+  color: white;
+}
+.form-register .input-register .input-1 .input-text {
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  border-bottom: 1px solid white;
+}
+.form-register .input-register .input-1 .input-text::placeholder{
+  color: rgba(255, 255, 255, 0.521);
+}
+
+.btn-register .btn-1{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-register .btn-2{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-register .btn-1 button{
+  width: 20%;
+  height: 50%;
+  border-radius: 10rem;
+  border: none;
+  margin-top: 2rem;
+  background: #0CCA4A;font-size: 16px;
+}
+.btn-register .btn-2 button{
+  width: 20%;
+  height: 50%;
+  border-radius: 10rem;
+  border: none;
+  margin-bottom: 2rem;
+  background: #F6AE2D;font-size: 16px;
+  font-weight: 300;
 }

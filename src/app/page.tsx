@@ -30,7 +30,7 @@ export default function Home({}: Props) {
                     height={24}
                     alt="Loading"
                   />
-                  <input type="text" placeholder="JohnDoe@gmail.com" />
+                  <input type="email" placeholder="JohnDoe@gmail.com" />
                 </div>
               </div>
               <div className="box-email">
@@ -57,7 +57,65 @@ export default function Home({}: Props) {
             </form>
           </div>
         ) : (
-          <div className="register"></div>
+          <div className="register">
+            <div className="register-image">
+              <Image
+                className="Image"
+                src={"/add-user.png"}
+                alt=""
+                width={125}
+                height={125}
+              />
+            </div>
+            <form className="form-register">
+              <div className="input-register">
+                <div className="input-1">
+                  <label htmlFor="">ชื่อผู้ใช้</label>
+                  <br />
+                  <input className="input-text" type="text" placeholder="กรุณากรอกให้ครบ"/>
+                </div>
+                <div className="input-1">
+                  <label htmlFor="">ชื่อเล่น</label>
+                  <br />
+                  <input className="input-text" type="text" placeholder="กรุณากรอกให้ครบ"/>
+                </div>
+                <div className="input-1">
+                  <label htmlFor="">อีเมลล์</label>
+                  <br />
+                  <input className="input-text" type="text" placeholder="กรุณากรอกให้ครบ"/>
+                </div>
+                <div className="input-1">
+                  <label htmlFor="">รหัสผ่าน</label>
+                  <br />
+                  <input className="input-text" type="text" placeholder="กรุณากรอกให้ครบ"/>
+                </div>
+                <div className="input-1">
+                  <label htmlFor="">ยืยันรหัสผ่าน</label>
+                  <br />
+                  <input className="input-text" type="text" placeholder="กรุณากรอกให้ครบ"/>
+                </div>
+                <div className="input-1">
+                  <label htmlFor="">เบอร์โทร</label>
+                  <br />
+                  <input className="input-text" type="text"placeholder="กรุณากรอกให้ครบ" />
+                </div>
+                <div className="input-1">
+                  <label htmlFor="">ใบอนุญาติการขับขี่</label>
+                  <br />
+                  <input className="input-file" type="file" />
+                </div>
+                <div className="input-1">
+                  <label htmlFor=""></label>
+                  <br />
+                  <input className="input-file" type="file" />
+                </div>
+              </div>
+              <div className="btn-register">
+                <div className="btn-1"><button>ยืนยันลงทะเบียน</button></div>
+                <div className="btn-2"><button>กลับไป เข้าสู่ระบบ</button></div>
+              </div>
+            </form>
+          </div>
         )}
       </div>
     </div>
