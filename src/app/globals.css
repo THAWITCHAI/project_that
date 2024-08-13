@@ -54,14 +54,13 @@ body {
   height: 70%;
 }
 .login .box-email {
-  border: 1px solid white;
   height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid white;
 }
 .login .form .input-email {
-  border: 1px solid white;
   height: 3rem;
   width: 50%;
   background: #fff;
@@ -75,10 +74,19 @@ body {
   height: 80%;
   width: 90%;
   border: none;
-  border-left: 1px solid rgb(148, 144, 144);
+  border-left: 1px solid rgba(148, 144, 144, 0.5);
   margin-left: 5px;
   padding-left: 5px;
   outline: none;
   color: #4b4747;
   font-size: 16px;
+  font-weight: 400;
+}
+.login .form .input-email input::placeholder{
+  font-weight: 100;
+}
+.input-submit{
+  border: 1px solid white;
+  width: 100%;
+  height: 100%;
 }

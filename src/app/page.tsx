@@ -33,6 +33,22 @@ export default function Home({}: Props) {
                   <input type="text" placeholder="JohnDoe@gmail.com" />
                 </div>
               </div>
+              <div className="box-email">
+                <div className="input-email">
+                  <Image
+                    src={"/padlock.png"}
+                    width={24}
+                    height={24}
+                    alt="Loading"
+                  />
+                  <input type="password" placeholder="Your Password" />
+                </div>
+              </div>
+              <div className="box-email">
+                <div className="input-submit">
+                  <button>Click</button>
+                </div>
+              </div>
             </form>
           </div>
         ) : (
