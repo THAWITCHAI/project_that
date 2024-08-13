@@ -1,19 +1,84 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
+  font-family: "Mitr", sans-serif;
+  font-weight: 200;
+  font-style: normal;
 }
-body{
-    width: 100vw;
-    height: 100vh;
+body {
+  width: 100vw;
+  height: 100vh;
 }
-.name{
-    background: #000;
-    width: 100%;
-    height: 100%;
+.home {
+  width: 100%;
+  height: 100%;
+  background: url("/car.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-@media screen and (max-width:1364px) {
-    .name{
-        background-color: orange;
-    }
+.box-home {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login {
+  height: 80%;
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.185);
+  border-radius: 2rem;
+  backdrop-filter: blur(10px);
+}
+.login .logo-image {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login .logo-image .Image {
+  transition: 0.25s;
+}
+.login .logo-image .Image:hover {
+  transition: 0.25s;
+  width: 150px;
+  height: 150px;
+}
+.login .form {
+  height: 70%;
+}
+.login .box-email {
+  border: 1px solid white;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login .form .input-email {
+  border: 1px solid white;
+  height: 3rem;
+  width: 50%;
+  background: #fff;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 1rem;
+  border-radius: 2rem;
+}
+.login .form .input-email input {
+  height: 80%;
+  width: 90%;
+  border: none;
+  border-left: 1px solid rgb(148, 144, 144);
+  margin-left: 5px;
+  padding-left: 5px;
+  outline: none;
+  color: #4b4747;
+  font-size: 16px;
 }
