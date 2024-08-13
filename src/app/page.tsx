@@ -44,17 +44,20 @@ export default function Home({}: Props) {
                   <input type="password" placeholder="Your Password" />
                 </div>
               </div>
-              <div className="box-email">
+              <div className="box-btn">
+                <div className="input-submit signin">
+                  <button className="btn-1">เข้าสู่ระบบ</button>
+                </div>
                 <div className="input-submit">
-                  <button>Click</button>
+                  <button className="btn-2" onClick={() => setSelete(1)}>
+                    ลงทะเบียน
+                  </button>
                 </div>
               </div>
             </form>
           </div>
         ) : (
-          <div className="Register">
-            
-          </div>
+          <div className="register"></div>
         )}
       </div>
     </div>

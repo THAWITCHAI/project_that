@@ -58,7 +58,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid white;
 }
 .login .form .input-email {
   height: 3rem;
@@ -82,11 +81,70 @@ body {
   font-size: 16px;
   font-weight: 400;
 }
-.login .form .input-email input::placeholder{
+.login .form .input-email input::placeholder {
   font-weight: 100;
 }
-.input-submit{
-  border: 1px solid white;
+.box-btn {
   width: 100%;
-  height: 100%;
+  height: 60%;
+  padding: 2rem;
+}
+.input-submit {
+  /* border: 1px solid; */
+  width: 100%;
+  height: 45%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+.input-submit button{
+  cursor: pointer;
+}
+.input-submit .btn-1 {
+  width: 20%;
+  height: 50%;
+  color: #000;
+  border-radius: 10rem;
+  border: none;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  background: #000;
+  margin-top: 3rem;
+  background: #f6ae2d;
+  transition: 0.25s;
+}
+.input-submit .btn-1:hover {
+  background: #ffc250;
+  width: 35%;
+}
+.input-submit .btn-2 {
+  width: 20%;
+  height: 50%;
+  color: #000;
+  border-radius: 10rem;
+  border: none;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  background: #0cca4a;
+  margin-top: 5px;
+  transition: 0.25s;
+}
+.input-submit .btn-2:hover {
+  background: #2fdd69;
+  width: 35%;
+  transition: 0.25s;
+}
+.signin {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.39);
+}
+
+
+/* Register */
+
+.register{
+  border: 1px solid white;
+  height: 90%;
+  width: 80%;
 }
