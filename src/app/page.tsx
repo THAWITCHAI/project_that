@@ -30,7 +30,7 @@ export default function Home({}: Props) {
                     height={24}
                     alt="Loading"
                   />
-                  <input type="text" placeholder="Email" />
+                  <input type="text" placeholder="JohnDoe@gmail.com" />
                 </div>
               </div>
             </form>
