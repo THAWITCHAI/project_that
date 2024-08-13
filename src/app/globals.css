@@ -1,19 +1,22 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     width: 100vw;
     height: 100vh;
 }
-.name{
+
+.name {
     background: #000;
     width: 100%;
     height: 100%;
 }
-@media screen and (max-width:1364px) {
-    .name{
+
+@media screen and (max-width:1366px) {
+    .name {
         background-color: orange;
     }
 }
