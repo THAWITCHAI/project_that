@@ -66,8 +66,29 @@
   .signin {
     border-bottom: 1px solid rgba(255, 255, 255, 0.39);
   }
-  .register .register-image .Image{
+  .register .register-image .Image {
     width: 80px;
     height: 80px;
+  }
+  .register .register-image .Image:hover {
+    width: 100px;
+    height: 100px;
+  }
+  .input-register {
+    height: 70%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 100px);
+  }
+  .input-1 {
+    height: 6rem;
+    width: 20rem;
+    padding: 1rem;
+  }
+  .btn-register .btn-1 button{
+    margin-top: 1.5rem;
+  }
+  .btn-register .btn-2 button{
+    margin-bottom: rem;
   }
 }

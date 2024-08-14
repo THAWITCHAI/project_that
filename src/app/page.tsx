@@ -46,10 +46,23 @@ export default function Home({}: Props) {
               </div>
               <div className="box-btn">
                 <div className="input-submit signin">
-                  <button className="btn-1">เข้าสู่ระบบ</button>
+                  <button
+                    className="btn-1"
+                    onClick={(e) => {
+                      e.preventDefault();
+                    }}
+                  >
+                    เข้าสู่ระบบ
+                  </button>
                 </div>
                 <div className="input-submit">
-                  <button className="btn-2" onClick={() => setSelete(1)}>
+                  <button
+                    className="btn-2"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setSelete(1);
+                    }}
+                  >
                     ลงทะเบียน
                   </button>
                 </div>
@@ -72,32 +85,56 @@ export default function Home({}: Props) {
                 <div className="input-1">
                   <label htmlFor="">ชื่อผู้ใช้</label>
                   <br />
-                  <input className="input-text" type="text" placeholder="กรุณากรอกให้ครบ"/>
+                  <input
+                    className="input-text"
+                    type="text"
+                    placeholder="กรุณากรอกให้ครบ"
+                  />
                 </div>
                 <div className="input-1">
                   <label htmlFor="">ชื่อเล่น</label>
                   <br />
-                  <input className="input-text" type="text" placeholder="กรุณากรอกให้ครบ"/>
+                  <input
+                    className="input-text"
+                    type="text"
+                    placeholder="กรุณากรอกให้ครบ"
+                  />
                 </div>
                 <div className="input-1">
                   <label htmlFor="">อีเมลล์</label>
                   <br />
-                  <input className="input-text" type="text" placeholder="กรุณากรอกให้ครบ"/>
+                  <input
+                    className="input-text"
+                    type="text"
+                    placeholder="กรุณากรอกให้ครบ"
+                  />
                 </div>
                 <div className="input-1">
                   <label htmlFor="">รหัสผ่าน</label>
                   <br />
-                  <input className="input-text" type="text" placeholder="กรุณากรอกให้ครบ"/>
+                  <input
+                    className="input-text"
+                    type="text"
+                    placeholder="กรุณากรอกให้ครบ"
+                  />
                 </div>
                 <div className="input-1">
                   <label htmlFor="">ยืยันรหัสผ่าน</label>
                   <br />
-                  <input className="input-text" type="text" placeholder="กรุณากรอกให้ครบ"/>
+                  <input
+                    className="input-text"
+                    type="text"
+                    placeholder="กรุณากรอกให้ครบ"
+                  />
                 </div>
                 <div className="input-1">
                   <label htmlFor="">เบอร์โทร</label>
                   <br />
-                  <input className="input-text" type="text"placeholder="กรุณากรอกให้ครบ" />
+                  <input
+                    className="input-text"
+                    type="text"
+                    placeholder="กรุณากรอกให้ครบ"
+                  />
                 </div>
                 <div className="input-1">
                   <label htmlFor="">ใบอนุญาติการขับขี่</label>
@@ -105,14 +142,31 @@ export default function Home({}: Props) {
                   <input className="input-file" type="file" />
                 </div>
                 <div className="input-1">
-                  <label htmlFor=""></label>
+                  <label htmlFor="">รูปโปรไฟล์</label>
                   <br />
                   <input className="input-file" type="file" />
                 </div>
               </div>
               <div className="btn-register">
-                <div className="btn-1"><button>ยืนยันลงทะเบียน</button></div>
-                <div className="btn-2"><button>กลับไป เข้าสู่ระบบ</button></div>
+                <div className="btn-1">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                    }}
+                  >
+                    ยืนยันลงทะเบียน
+                  </button>
+                </div>
+                <div className="btn-2">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setSelete(0);
+                    }}
+                  >
+                    กลับไป เข้าสู่ระบบ
+                  </button>
+                </div>
               </div>
             </form>
           </div>

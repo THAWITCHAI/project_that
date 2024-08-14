@@ -239,3 +239,11 @@ body {
   background: #F6AE2D;font-size: 16px;
   font-weight: 300;
 }
+.btn-register .btn-1:active{
+  transform: scale(0.9);
+  transition: 0.25s;
+}
+.btn-register .btn-2:active{
+  transition: 0.25s;
+  transform: scale(0.9);
+}
