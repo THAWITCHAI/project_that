@@ -43,8 +43,8 @@ export default function Sidebar({}: Props) {
           <Image
             src={"/profile.jpg"}
             alt="profile"
-            width={128}
-            height={128}
+            width={130}
+            height={130}
             className="Image"
           />
         </div>
@@ -62,7 +62,7 @@ export default function Sidebar({}: Props) {
             alt=""
             className="Image"
           />
-          <h3>จองรถ</h3>
+          <button id="button" className="button">จองรถ</button>
         </div>
         <div className="item menu-2">
           <Image
@@ -72,7 +72,9 @@ export default function Sidebar({}: Props) {
             alt=""
             className="Image"
           />
-          <h3>ประวัติการจอง</h3>
+          <button id="button" className="button">
+            ประวัติการจอง
+          </button>
         </div>
         <div className="item menu-3">
           <Image
@@ -82,7 +84,9 @@ export default function Sidebar({}: Props) {
             alt=""
             className="Image"
           />
-          <h3>รถทั้งหมด</h3>
+          <button id="button" className="button">
+            รถทั้งหมด
+          </button>
         </div>
         <div className="item menu-4">
           <Image
@@ -92,7 +96,9 @@ export default function Sidebar({}: Props) {
             alt=""
             className="Image"
           />
-          <h3>ออกจากระบบ</h3>
+          <button id="button" className="button">
+            ออกจากระบบ
+          </button>
         </div>
         <div className="menu-5">{time ? formatTime(time) : "Loading..."}</div>
       </div>

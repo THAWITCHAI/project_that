@@ -38,13 +38,12 @@
   .sidebar .profile .contact-profile .status {
     font-size: 16px;
   }
-  .sidebar .profile .contact-profile  p {
+  .sidebar .profile .contact-profile p {
     font-size: 13px;
-
   }
 
   /* Menu */
-  .sidebar .side-menu .item h3{
+  .sidebar .side-menu .item h3 {
     font-size: 14px;
   }
   .sidebar .menu-5 {
@@ -65,5 +64,10 @@
     border: 1px solid white;
     width: 16px;
     height: 16px;
+  }
+  .sidebar .side-menu .item #button {
+    background: none;
+    border: none;
+    font-size: 12px;
   }
 }
