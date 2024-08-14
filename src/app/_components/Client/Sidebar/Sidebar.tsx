@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import "./reponsive.css";
 import "./sidebar.css";
@@ -6,7 +6,6 @@ import Image from "next/image";
 type Props = {};
 
 export default function Sidebar({}: Props) {
-
   const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
@@ -41,7 +40,13 @@ export default function Sidebar({}: Props) {
       </div>
       <div className="profile">
         <div className="image-profile">
-          <Image src={"/profile.jpg"} alt="profile" width={128} height={128} />
+          <Image
+            src={"/profile.jpg"}
+            alt="profile"
+            width={128}
+            height={128}
+            className="Image"
+          />
         </div>
         <div className="contact-profile">
           <h1 className="status">Thawitchai Boonsong</h1>
