@@ -1,73 +1,71 @@
 @media screen and (max-width: 1366px) {
-  .sidebar {
-    width: 17%;
-    height: 100%;
-    background: #8e7dbe;
-    padding: 1%;
-    display: block;
-  }
-  /* Setting */
-  .setting {
-    height: 5%;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    transition: 0.25s;
-  }
-  .setting .Image {
-    cursor: pointer;
-    transition: 0.25s;
-    width: 18px;
-    height: 18px;
-  }
-
-  /* Profile */
-
-  .sidebar .profile {
-    height: 15%;
-  }
-
-  .sidebar .profile .image-profile {
-    width: 42%;
-  }
-  .sidebar .profile .image-profile .Image {
-    width: 90px;
-    height: 90px;
-  }
-
-  .sidebar .profile .contact-profile .status {
-    font-size: 16px;
-  }
-  .sidebar .profile .contact-profile p {
-    font-size: 13px;
-  }
-
-  /* Menu */
-  .sidebar .side-menu .item h3 {
-    font-size: 14px;
-  }
-  .sidebar .menu-5 {
-    font-size: 25px;
-  }
-  .menu-4 {
-    border: 1px solid white;
-  }
-  .sidebar .side-menu .item:active {
-    transform: scale(0.9);
-  }
-  .sidebar .side-menu .menu-5:hover {
-    transition: 0.25s;
-    font-size: 30px;
-    border: none;
-  }
-  .side-menu .item .Image {
-    border: 1px solid white;
-    width: 16px;
-    height: 16px;
-  }
-  .sidebar .side-menu .item #button {
-    background: none;
-    border: none;
-    font-size: 12px;
-  }
+    .sidebar {
+        width: 17%;
+        height: 100%;
+        background: #8e7dbe;
+        padding: 1%;
+        display: block;
+    }
+    /* Setting */
+    .setting {
+        height: 5%;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        transition: 0.25s;
+    }
+    .setting .Image {
+        cursor: pointer;
+        transition: 0.25s;
+        width: 18px;
+        height: 18px;
+    }
+    /* Profile */
+    .sidebar .profile {
+        height: 15%;
+    }
+    .sidebar .profile .image-profile {
+        width: 42%;
+    }
+    .sidebar .profile .image-profile .Image {
+        width: 90px;
+        height: 90px;
+    }
+    .sidebar .profile .contact-profile .status {
+        font-size: 16px;
+    }
+    .sidebar .profile .contact-profile p {
+        font-size: 13px;
+    }
+    /* Menu */
+    .sidebar .side-menu .item h3 {
+        font-size: 14px;
+    }
+    .sidebar .menu-5 {
+        font-size: 25px;
+    }
+    .menu-4 {
+        border: 1px solid white;
+    }
+    .sidebar .side-menu .item:active {
+        transform: scale(0.9);
+    }
+    .sidebar .side-menu .menu-5:hover {
+        transition: 0.25s;
+        font-size: 30px;
+        border: none;
+    }
+    .sidebar .side-menu .item {
+        height: 3rem;
+    }
+    .side-menu .item .Image {
+        border: 1px solid white;
+        width: 16px;
+        height: 16px;
+    }
+    .sidebar .side-menu .item #button {
+        background: none;
+        border: none;
+        font-size: 12px;
+    }
 }
