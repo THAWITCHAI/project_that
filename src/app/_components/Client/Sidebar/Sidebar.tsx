@@ -80,7 +80,7 @@ export default function Sidebar({}: Props) {
             ประวัติการจอง
           </div>
         </button>
-        <button className="item menu-3">
+        <button className="item menu-3" onClick={()=>router.push('/client/all-car')}>
           <Image
             src={"/pickup-car.png"}
             width={24}
