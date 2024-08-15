@@ -64,10 +64,10 @@
   grid-template-rows: repeat(7, 13%);
 }
 .side-menu .item {
-  border: 1px solid white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.514);
   width: 100%;
   margin: 1rem 0;
-  /* border-radius: 20px; */
   transition: 0.25s;
   display: flex;
   justify-content: start;
@@ -76,6 +76,7 @@
   cursor: pointer;
 }
 .sidebar .side-menu .item .button {
+  cursor: pointer;
   background: none;
   border: none;
   font-size: 16px;
@@ -106,7 +107,7 @@
 }
 .side-menu .menu-5:hover {
   transition: 0.25s;
-  font-size: 50px;
+  font-size: 49px;
   border: none;
 }
 .side-menu .item .Image {

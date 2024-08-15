@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import "./reponsive.css";
 import "./sidebar.css";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 type Props = {};
 
 export default function Sidebar({}: Props) {
   const [time, setTime] = useState<Date | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     // Set the initial time once the component has mounted (client-side)
@@ -62,7 +64,9 @@ export default function Sidebar({}: Props) {
             alt=""
             className="Image"
           />
-          <button id="button" className="button">จองรถ</button>
+          <button id="button" className="button">
+            จองรถ
+          </button>
         </div>
         <div className="item menu-2">
           <Image
@@ -88,7 +92,7 @@ export default function Sidebar({}: Props) {
             รถทั้งหมด
           </button>
         </div>
-        <div className="item menu-4">
+        <div className="item menu-4" onClick={() => router.replace("/")}>
           <Image
             src={"/logout.png"}
             width={24}

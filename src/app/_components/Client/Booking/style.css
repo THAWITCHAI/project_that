@@ -46,6 +46,7 @@
 .booking .card .card-contact .price {
   width: 100%;
   color: #3bb273;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

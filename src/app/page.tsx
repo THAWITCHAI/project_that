@@ -1,11 +1,23 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 type Props = {};
 
 export default function Home({}: Props) {
   const [select, setSelete] = useState(0);
+  const [email, setEmail] = useState("");
+  const [pwd, setPwd] = useState("");
+
+  const router = useRouter();
+
+  const handleSubmit = () => {
+    if (email == "thawitchai@gmail.com" && pwd == "13495000") {
+      return router.replace("/booking");
+    }
+    return alert("อีเมล หรือ รหัสผ่านไม่ถูกต้อง");
+  };
   return (
     <div className="home">
       <div className="box-home">
@@ -30,7 +42,11 @@ export default function Home({}: Props) {
                     height={24}
                     alt="Loading"
                   />
-                  <input type="email" placeholder="JohnDoe@gmail.com" />
+                  <input
+                    type="email"
+                    placeholder="JohnDoe@gmail.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
               </div>
               <div className="box-email">
@@ -41,7 +57,11 @@ export default function Home({}: Props) {
                     height={24}
                     alt="Loading"
                   />
-                  <input type="password" placeholder="Your Password" />
+                  <input
+                    type="password"
+                    placeholder="Your Password"
+                    onChange={(e) => setPwd(e.target.value)}
+                  />
                 </div>
               </div>
               <div className="box-btn">
@@ -50,6 +70,7 @@ export default function Home({}: Props) {
                     className="btn-1"
                     onClick={(e) => {
                       e.preventDefault();
+                      handleSubmit();
                     }}
                   >
                     เข้าสู่ระบบ
