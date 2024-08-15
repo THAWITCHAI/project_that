@@ -14,7 +14,7 @@ export default function Home({}: Props) {
 
   const handleSubmit = () => {
     if (email == "thawitchai@gmail.com" && pwd == "13495000") {
-      return router.replace("/booking");
+      return router.replace("/client/booking");
     }
     return alert("อีเมล หรือ รหัสผ่านไม่ถูกต้อง");
   };

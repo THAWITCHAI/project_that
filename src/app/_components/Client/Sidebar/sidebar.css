@@ -74,6 +74,8 @@
   align-items: center;
   padding-left: 2rem;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 .sidebar .side-menu .item .button {
   cursor: pointer;
@@ -92,7 +94,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 45px;
+  font-size: 35px;
 }
 .menu-4 {
   grid-row: 5/6;
@@ -107,7 +109,7 @@
 }
 .side-menu .menu-5:hover {
   transition: 0.25s;
-  font-size: 49px;
+  font-size: 40px;
   border: none;
 }
 .side-menu .item .Image {

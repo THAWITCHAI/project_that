@@ -56,7 +56,7 @@ export default function Sidebar({}: Props) {
         </div>
       </div>
       <div className="side-menu">
-        <div className="item menu-1">
+        <button className="item menu-1" onClick={()=>router.push('/client/booking')}>
           <Image
             src={"/appointment.png"}
             width={24}
@@ -64,11 +64,11 @@ export default function Sidebar({}: Props) {
             alt=""
             className="Image"
           />
-          <button id="button" className="button">
+          <div id="button" className="button">
             จองรถ
-          </button>
-        </div>
-        <div className="item menu-2">
+          </div>
+        </button>
+        <button className="item menu-2" onClick={()=>router.push('/client/list')}>
           <Image
             src={"/to-do-list.png"}
             width={24}
@@ -76,11 +76,11 @@ export default function Sidebar({}: Props) {
             alt=""
             className="Image"
           />
-          <button id="button" className="button">
+          <div id="button" className="button">
             ประวัติการจอง
-          </button>
-        </div>
-        <div className="item menu-3">
+          </div>
+        </button>
+        <button className="item menu-3">
           <Image
             src={"/pickup-car.png"}
             width={24}
@@ -88,11 +88,11 @@ export default function Sidebar({}: Props) {
             alt=""
             className="Image"
           />
-          <button id="button" className="button">
+          <div id="button" className="button">
             รถทั้งหมด
-          </button>
-        </div>
-        <div className="item menu-4" onClick={() => router.replace("/")}>
+          </div>
+        </button>
+        <button className="item menu-4" onClick={() => router.replace("/")}>
           <Image
             src={"/logout.png"}
             width={24}
@@ -100,10 +100,10 @@ export default function Sidebar({}: Props) {
             alt=""
             className="Image"
           />
-          <button id="button" className="button">
+          <div id="button" className="button">
             ออกจากระบบ
-          </button>
-        </div>
+          </div>
+        </button>
         <div className="menu-5">{time ? formatTime(time) : "Loading..."}</div>
       </div>
     </div>

@@ -1,0 +1,11 @@
+@media screen and (max-width: 1366px) {
+    .List .list-contact .list-header .list-count .btn{
+        font-size: 15px;
+        transition: 0.25s;
+        border-radius: 5px;
+    }
+    .List .list-contact .list-header .list-count .btn:active{
+        transform: scale(0.9);
+        transition: 0.25s;
+    }
+}
