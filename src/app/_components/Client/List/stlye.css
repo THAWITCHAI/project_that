@@ -44,8 +44,13 @@
 }
 
 .List .list-contact .list-table{
-    background: #cc4b4b;
     width: 100%;
     height: 85%;
+    margin-top: 2.5%;
+    overflow-y: scroll;
+}
+.List .list-contact .list-table .table{
+    width: 100%;
+    height: 100%;
     margin-top: 2.5%;
 }
