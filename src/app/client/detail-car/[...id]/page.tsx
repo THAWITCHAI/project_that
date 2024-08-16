@@ -82,7 +82,7 @@ export default function Detail_Cars({ params }: Props) {
                   <h1 className="text-black title-name">สี</h1>
                 </div>
                 <div className="resualt text-black">
-                  <div className="bg-[#f0f] rounded-xl w-12 h-12"></div>
+                  <div className="bg-[#f0f] rounded-xl w-12 h-12 color"></div>
                 </div>
               </div>
               <div className="detail-item">
@@ -114,7 +114,7 @@ export default function Detail_Cars({ params }: Props) {
               <div className="detail-item">
                 <div className="title">
                   <Image
-                    src={"/hatchback.png"}
+                    src={"/vehicle.png"}
                     width={24}
                     height={24}
                     alt=""

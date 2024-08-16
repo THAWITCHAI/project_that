@@ -1,0 +1,65 @@
+.confirm-booking{
+    width: 83%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    border: 1px solid black;
+    width: 20%;
+    height: 30%;
+    border: none;
+    box-shadow: 0 0 10px #0000005e;
+    border-radius: 10px;
+}
+.card .h1{
+    width: 100%;
+    height: 15%;
+    font-size: large;
+    font-weight: 300;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card .form{
+    width: 100%;
+    height: 50%;
+}
+.card .form .input{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card .form .btn {
+    height: 58%;
+}
+.card .form .btn .button{
+    height: 50%;
+    width: 50%;
+    border-radius: 20px;
+}
+.card .form .btn .button:active{
+    transform: scale(0.9);
+}
+@media screen and (max-width:1366px) {
+    .card .form .input .label{
+        width: 45%;
+    }
+    .card .form .input .inp{
+        width: 45%;
+    }
+    .card .form .input{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .card{
+        padding: 1%;
+    }
+}
