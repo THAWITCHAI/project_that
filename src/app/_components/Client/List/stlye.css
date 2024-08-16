@@ -70,11 +70,12 @@
 }
 .List .list-contact .list-table .table .action .detail{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     width: 45%;
     height: 2.5rem;
-    background:#E3B505;
+    background:#DB504A;
+    width: 100%;
     color: aliceblue;
     border-radius: 5px;
 }

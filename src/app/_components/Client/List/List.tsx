@@ -55,6 +55,12 @@ export default function List({}: Props) {
                     >
                       วันที่คืนรถ
                     </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-black font-normal"
+                    >
+                      ราคา (฿)
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -67,17 +73,9 @@ export default function List({}: Props) {
                     </td>
                     <td className="px-6 py-4 text-black ">12/06/2545</td>
                     <td className="px-6 py-4 text-black ">12/07/2545</td>
+                    <td className="px-6 py-4 text-green-500">1,500</td>
                     <td className="px-6 py-4 text-black action">
                       <button className="detail">
-                        <Image
-                          src={"/info.png"}
-                          alt="logo"
-                          width={24}
-                          height={24}
-                          className="Image"
-                        />
-                      </button>
-                      <button className="button">
                         <Image
                           src={"/delete.png"}
                           alt="logo"
