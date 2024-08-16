@@ -38,6 +38,7 @@ export default function Sidebar({}: Props) {
           height={24}
           alt="setting"
           className="Image"
+          onClick={()=>router.push('/client/setting')}
         />
       </div>
       <div className="profile">

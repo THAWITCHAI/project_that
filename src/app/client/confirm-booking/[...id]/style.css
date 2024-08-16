@@ -47,10 +47,10 @@
 }
 @media screen and (max-width:1366px) {
     .card .form .input .label{
-        width: 45%;
+        width: 40%;
     }
     .card .form .input .inp{
-        width: 45%;
+        width: 60%;
     }
     .card .form .input{
         width: 100%;
@@ -61,5 +61,10 @@
     }
     .card{
         padding: 1%;
+    }
+    .card .form .btn .button{
+        height: 60%;
+        width: 50%;
+        border-radius: 5px;
     }
 }

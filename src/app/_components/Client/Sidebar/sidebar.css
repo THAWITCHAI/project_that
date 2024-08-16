@@ -18,8 +18,7 @@
   transition: 0.25s;
 }
 .setting .Image:active {
-  width: 30px;
-  height: 30px;
+  transform: scale(1.5);
   transition: 0.25s;
 }
 

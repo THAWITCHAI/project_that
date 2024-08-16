@@ -1,6 +1,7 @@
 import Sidebar from "@/app/_components/Client/Sidebar/Sidebar";
 import React from "react";
 import "./style.css";
+import Link from "next/link";
 
 type Props = any;
 
@@ -27,7 +28,7 @@ export default function page({ params }: Props) {
             </div>
             <div className="btn flex justify-center items-center">
               <button type="submit" className="text-white bg-green-500 button">
-                ยืนยันการจอง
+                <Link href={'/client/booking'}>ยืนยันการจอง</Link>
               </button>
             </div>
           </form>
