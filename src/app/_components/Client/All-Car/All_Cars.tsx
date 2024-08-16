@@ -1,10 +1,14 @@
+"use client";
 import React from "react";
 import "./reponsive.css";
 import "./style.css";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 type Props = {};
 
 export default function All_Cars({}: Props) {
+  const router = useRouter();
   return (
     <div className="booking">
       <div className="card">
@@ -23,10 +27,16 @@ export default function All_Cars({}: Props) {
           <div className="price">2,540 ฿</div>
         </div>
         <div className="card-btn">
-          <button className="btn btn-1">รายละเอียด</button>
+          <button
+            className="btn btn-1"
+            onClick={() => router.push("/client/detail-car/154")}
+          >
+            <Link href="/client/detail-car/154">รายละเอียด</Link>
+          </button>
           <button className="btn btn-2 ">กำลังใช้งาน</button>
         </div>
       </div>
     </div>
   );
 }
+// #23A33F

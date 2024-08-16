@@ -78,3 +78,6 @@
     color: aliceblue;
     border-radius: 5px;
 }
+.List .list-contact .list-table .table .action button:active{
+    transform: scale(0.9);
+}

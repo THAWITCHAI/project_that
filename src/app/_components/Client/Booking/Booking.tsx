@@ -2,6 +2,7 @@ import React from "react";
 import "./reponsive.css";
 import "./style.css";
 import Image from "next/image";
+import Link from "next/link";
 type Props = {};
 
 export default function Booking({}: Props) {
@@ -23,7 +24,7 @@ export default function Booking({}: Props) {
           <div className="price">2,540 ฿</div>
         </div>
         <div className="card-btn">
-          <button className="btn btn-1">รายละเอียด</button>
+          <button className="btn btn-1"><Link href={'/client/detail-car/1'}>รายละเอียด</Link></button>
           <button className="btn btn-2">จอง</button>
         </div>
       </div>

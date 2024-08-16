@@ -1,0 +1,51 @@
+.detail-car {
+  width: 83%;
+  height: 100%;
+  padding: 4% 10%;
+}
+.detail-car .contact {
+  width: 100%;
+  height: 100%;
+}
+.detail-car .contact .image {
+  width: 100%;
+  height: 50%;
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.detail-car .contact .detail {
+  width: 100%;
+  height: 50%;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(5, 15%);
+}
+.detail-car .contact .detail .detail-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.detail-car .contact .detail .detail-item .title {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.detail-car .contact .detail .detail-item .title .title-name {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  padding-left: 6%;
+  align-items: center;
+}
+.detail-car .contact .detail .detail-item .resualt {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+}
