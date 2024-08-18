@@ -31,7 +31,7 @@ export default function Sidebar({}: Props) {
   return (
     <div className="sidebar">
       <div className="setting">
-        <Link href={"#"}>
+        <Link href={"/admin/setting"}>
           <Image
             src={"/settings.png"}
             width={24}
@@ -58,7 +58,7 @@ export default function Sidebar({}: Props) {
       </div>
       <div className="tag-bar">แสดงข้อมูล</div>
       <div className="box-menu-1">
-        <Link href={"#"}>
+        <Link href={"/admin/car/all-car"}>
           <div className="menu-item">
             <Image
               src={"/car.png"}
@@ -70,7 +70,7 @@ export default function Sidebar({}: Props) {
             ข้อมูลรถ
           </div>
         </Link>
-        <Link href={"#"}>
+        <Link href={"/admin/user/all-user"}>
           <div className="menu-item">
             <Image
               src={"/group.png"}
@@ -94,7 +94,7 @@ export default function Sidebar({}: Props) {
               alt=""
               className="Image"
             />
-            เพิ่มรถ
+            เพิ่มข้อมูลรถ
           </div>
         </Link>
         <Link href={"#"}>
@@ -106,12 +106,12 @@ export default function Sidebar({}: Props) {
               alt=""
               className="Image"
             />
-            เพิ่มผู้ใช้
+            เพิ่มข้อมูลผู้ใช้
           </div>
         </Link>
       </div>
       <div className="box-menu-1">
-        <Link href={"#"}>
+        <Link href={"/admin/setting"}>
           <div className="menu-item">
             <Image
               src={"/to-do-list.png"}
@@ -123,7 +123,7 @@ export default function Sidebar({}: Props) {
             รายการจอง
           </div>
         </Link>
-        <Link href={"#"}>
+        <Link href={"/"}>
           <div className="menu-item">
             <Image
               src={"/logout.png"}

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./style.css";
 import "./reponsive.css";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {};
 
@@ -11,7 +12,7 @@ export default function Setting({}: Props) {
   return (
     <div className="setting-bg">
       <div className="show-contact">
-        <h1 className="text-black title">ข้อมูลผู้ใช้</h1>
+        <h1 className="text-black title">ข้อมูลผู้ตัวเอง</h1>
         <div className="box-form">
           <div className="box-show">
             <Image
@@ -82,7 +83,12 @@ export default function Setting({}: Props) {
               alt=""
               className="Image"
             />
-            <input type="text" placeholder="รหัสผ่าน" className="input" defaultValue={"13495000"}/>
+            <input
+              type="text"
+              placeholder="รหัสผ่าน"
+              className="input"
+              defaultValue={"13495000"}
+            />
           </div>
           <div className="box-show">
             <Image
@@ -92,7 +98,12 @@ export default function Setting({}: Props) {
               alt=""
               className="Image"
             />
-            <input type="text" placeholder="เบอร์โทร" className="input" defaultValue={"065-297-4104"}/>
+            <input
+              type="text"
+              placeholder="เบอร์โทร"
+              className="input"
+              defaultValue={"065-297-4104"}
+            />
           </div>
           <div className="box-show">
             <Image
@@ -102,7 +113,13 @@ export default function Setting({}: Props) {
               alt=""
               className="Image"
             />
-            <input type="text" placeholder="สถานะ" className="input" defaultValue={"User"} disabled />
+            <input
+              type="text"
+              placeholder="สถานะ"
+              className="input"
+              defaultValue={"User"}
+              disabled
+            />
           </div>
           <div className="box-show box-file">
             <label htmlFor="" className="text-black">
@@ -116,8 +133,8 @@ export default function Setting({}: Props) {
             />
           </div>
           <div className="box-show-btn">
-            <button className="btn text-white text-xl rounded-lg bg-yellow-500">
-              กลับ
+            <button className="btn text-white text-xl rounded-lg bg-yellow-500 w-full h-full">
+              <Link href={"/admin/car/all-car"}>กลับ</Link>
             </button>
           </div>
           <div className="box-show-btn">
