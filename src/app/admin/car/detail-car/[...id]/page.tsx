@@ -82,7 +82,7 @@ export default function Detail_Cars({ params }: Props) {
                   <h1 className="text-black title-name">สี</h1>
                 </div>
                 <div className="resualt text-black">
-                  <div className="bg-[#f0f] rounded-xl w-12 h-12 color"></div>
+                  <div className="bg-[#641212] rounded-xl w-12 h-12 color"></div>
                 </div>
               </div>
               <div className="detail-item">

@@ -28,7 +28,7 @@ export default function page({ params }: Props) {
             </div>
             <div className="btn flex justify-center items-center">
               <button type="submit" className="text-white bg-green-500 button">
-                <Link href={'/client/booking'}>ยืนยันการจอง</Link>
+                <Link href={'/client/list'}>ยืนยันการจอง</Link>
               </button>
             </div>
           </form>
