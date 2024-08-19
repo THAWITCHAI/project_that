@@ -85,7 +85,7 @@ export default function Sidebar({}: Props) {
       </div>
       <div className="tag-bar">เพิ่มข้อมูล</div>
       <div className="box-menu-1">
-        <Link href={"#"}>
+        <Link href={"/admin/add-car"}>
           <div className="menu-item">
             <Image
               src={"/car.png"}
@@ -97,7 +97,7 @@ export default function Sidebar({}: Props) {
             เพิ่มข้อมูลรถ
           </div>
         </Link>
-        <Link href={"#"}>
+        <Link href={"/admin/add-user"}>
           <div className="menu-item">
             <Image
               src={"/group.png"}

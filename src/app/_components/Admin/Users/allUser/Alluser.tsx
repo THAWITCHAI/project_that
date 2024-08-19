@@ -121,7 +121,7 @@ export default function Alluser({}: Props) {
       )}
       {select == 3 ? (
         <div className="box-table">
-        <div className="relative overflow-x-auto table-2 table-center">
+        <div className="relative overflow-x-auto table-2 table-user">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
