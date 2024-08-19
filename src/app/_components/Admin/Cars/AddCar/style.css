@@ -13,7 +13,7 @@
   border-radius: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(5, 10%);
+  grid-template-rows: repeat(7, 10%);
 }
 .main-addcar .form-addcar .input-form {
   width: 100%;
@@ -43,6 +43,31 @@
   padding-top: 1.25%;
   background: none;
 }
+.main-addcar .form-addcar .btn{
+  grid-row: 6/7;
+  grid-column: 2/3;
+  display: flex;
+  justify-content: center;
+  border: none;
+}
+.main-addcar .form-addcar .Link{
+  border: none;
+  height: 60%;
+  width: 70%;
+  color: black;
+  border-radius: 8px;
+  padding: 0 2%;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  transition: 0.25s;
+  align-items: center;
+}
+.main-addcar .form-addcar .Link:active{
+  transform: scale(0.9);
+  transition: 0.25s;
+}
+
 @media screen and (max-width: 1366px) {
   .main-addcar .form-addcar .input-form .file {
     padding-top: 1.25%;
@@ -61,5 +86,10 @@
   }
   .main-addcar .form-addcar .input-form .input {
     font-size: 14px;
+    border-radius: 5px;
+  }
+  .main-addcar .form-addcar .input-form .Link {
+    font-size: 14px;
+    border-radius: 5px;
   }
 }
