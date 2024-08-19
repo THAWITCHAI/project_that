@@ -1,70 +1,68 @@
-.confirm-booking{
-    width: 83%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.confirm-booking {
+  width: 83%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.card{
-    border: 1px solid black;
-    width: 20%;
-    height: 30%;
-    border: none;
-    box-shadow: 0 0 10px #0000005e;
-    border-radius: 10px;
+.confirm-booking .card-form {
+  border: 1px solid black;
+  width: 80%;
+  height: 60%;
+  border: none;
+  box-shadow: 0 0 10px #0000005e;
+  border-radius: 10px;
+  padding: 2%;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: repeat(6,1fr);
 }
-.card .h1{
-    width: 100%;
-    height: 15%;
-    font-size: large;
-    font-weight: 300;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.box-input {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
-.card .form{
-    width: 100%;
+.box-input .input{
+    border: 0.5px solid rgba(0, 0, 0, 0.226);
+    width: 70%;
     height: 50%;
+    margin-left: 2%;
+    outline: none;
+    color: black;
+    padding-left: 2%;
+    border-radius: 5px;
 }
-.card .form .input{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.box-input .label{
+  width:30%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
-.card .form .btn {
-    height: 58%;
+.card-form .btn{
+  width: 100%;
+  height: 70%;
+  font-size: 20px;
+  transition: 0.25s;
+  border-radius: 20px;
 }
-.card .form .btn .button{
-    height: 50%;
-    width: 50%;
-    border-radius: 20px;
+.card-form .Link{
+  grid-row: 5/6;
+  grid-column: 2/3;
 }
-.card .form .btn .button:active{
-    transform: scale(0.9);
+.card-form .btn:active{
+  transform: scale(0.9);
+  transition: 0.25s;
 }
 @media screen and (max-width:1366px) {
-    .card .form .input .label{
-        width: 40%;
-    }
-    .card .form .input .inp{
-        width: 60%;
-    }
-    .card .form .input{
-        width: 100%;
-        height: 50%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-    .card{
-        padding: 1%;
-    }
-    .card .form .btn .button{
-        height: 60%;
-        width: 50%;
-        border-radius: 5px;
-    }
+  .box-input .label{
+    font-size: 14px;
+  }
+  .box-input .input{
+    font-size: 12px;
+  }
+  .card-form .btn{
+    border-radius: 15px;
+  }
 }

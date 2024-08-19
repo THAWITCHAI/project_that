@@ -58,23 +58,11 @@
     display: flex;
     justify-content: space-around;
 }
-.List .list-contact .list-table .table .action button{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 45%;
-    height: 2.5rem;
-    background: #DB504A;
-    color: aliceblue;
-    border-radius: 5px;
-}
 .List .list-contact .list-table .table .action .detail{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 45%;
     height: 2.5rem;
-    background:#DB504A;
     width: 100%;
     color: aliceblue;
     border-radius: 5px;

@@ -1,7 +1,7 @@
+"use client";
 import React from "react";
 import "./stlye.css";
 import "./reponsive.css";
-import Image from "next/image";
 type Props = {};
 
 export default function List({}: Props) {
@@ -75,15 +75,22 @@ export default function List({}: Props) {
                     <td className="px-6 py-4 text-black ">12/07/2545</td>
                     <td className="px-6 py-4 text-green-500">1,500</td>
                     <td className="px-6 py-4 text-black action">
-                      <button className="detail">
-                        <Image
-                          src={"/delete.png"}
-                          alt="logo"
-                          width={24}
-                          height={24}
-                          className="Image"
-                        />
+                      <button
+                        className="detail mx-2 bg-blue-500"
+                        onClick={() => {
+                          const req = prompt("หมายเหตุ");
+                          if (req) {
+                            console.log("Hee");
+                            return;
+                          } else {
+                            console.log("Hum");
+                            return;
+                          }
+                        }}
+                      >
+                        คืนรถ
                       </button>
+                      <button className="detail bg-red-500">ลบ</button>
                     </td>
                   </tr>
                 </tbody>

@@ -31,7 +31,7 @@ export default function Allcars({}: Props) {
       </div>
       {select == 2 ? (
         <div className="box-table">
-          <div className="relative overflow-x-auto">
+          <div className="relative overflow-x-auto table-center">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -114,6 +114,57 @@ export default function Allcars({}: Props) {
                         เพิ่มเติม
                       </button>
                     </Link>
+                    <Link href={""}>
+                      <button className="btn bg-red-500 hover:bg-red-600">
+                        ลบ
+                      </button>
+                    </Link>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+      {select == 3 ? (
+        <div className="box-table">
+          <div className="relative overflow-x-auto table-2 table-center">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" className="px-6 py-3 text-black">
+                    รหัสรถ
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-black">
+                    ชื่อ
+                  </th>
+
+                  <th scope="col" className="px-6 py-3 text-black">
+                    ตอบสนอง
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 box-tr">
+                  <td
+                    scope="row"
+                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    1524
+                  </td>
+                  <td
+                    scope="row"
+                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    Nissan
+                  </td>
+
+                  <td
+                    scope="row"
+                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                  >
                     <Link href={""}>
                       <button className="btn bg-red-500 hover:bg-red-600">
                         ลบ
