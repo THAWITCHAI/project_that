@@ -69,7 +69,7 @@ export default function List({}: Props) {
                     <td className="px-6 py-4 text-black ">Nissan</td>
                     <td className="px-6 py-4 text-black ">GTR-35</td>
                     <td className="px-6 py-4 text-black ">
-                      นาย ธวิชชัย บุญส่ง
+                    Tat Sutummawong
                     </td>
                     <td className="px-6 py-4 text-black ">12/06/2545</td>
                     <td className="px-6 py-4 text-black ">12/07/2545</td>

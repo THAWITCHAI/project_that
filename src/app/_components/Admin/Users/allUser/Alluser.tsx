@@ -70,7 +70,7 @@ export default function Alluser({}: Props) {
                     scope="row"
                     className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    Thawitchai Boonsong
+                    Tat Sutummawong 
                   </td>
                   <td
                     scope="row"
@@ -82,13 +82,13 @@ export default function Alluser({}: Props) {
                     scope="row"
                     className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    thawitchai@gmail.com
+                    Tat_Sutummawong@gmail.com
                   </td>
                   <td
                     scope="row"
                     className="title px-6 py-4 font-light text-green-500 whitespace-nowrap dark:text-white"
                   >
-                    0652974104
+                    064-166-9191
                   </td>
                   <td
                     scope="row"

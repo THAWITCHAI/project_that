@@ -43,7 +43,7 @@
   padding-top: 1.25%;
   background: none;
 }
-.main-addcar .form-addcar .btn{
+.main-addcar .form-addcar .btn-2{
   grid-row: 6/7;
   grid-column: 2/3;
   display: flex;

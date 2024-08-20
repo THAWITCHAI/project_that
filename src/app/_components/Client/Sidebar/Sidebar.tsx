@@ -52,7 +52,7 @@ export default function Sidebar({}: Props) {
           />
         </div>
         <div className="contact-profile">
-          <h1 className="status">Thawitchai Boonsong</h1>
+          <h1 className="status">Tat Sutummawong</h1>
           <p>User</p>
         </div>
       </div>

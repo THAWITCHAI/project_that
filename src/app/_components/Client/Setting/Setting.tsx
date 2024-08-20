@@ -42,7 +42,7 @@ export default function Setting({}: Props) {
               type="text"
               placeholder="ชื่อ - นามสกุล"
               className="input"
-              defaultValue={"Thawitchai Boonsong"}
+              defaultValue={"Tat Sutummawong"}
             />
           </div>
           <div className="box-show">
@@ -57,7 +57,7 @@ export default function Setting({}: Props) {
               type="text"
               placeholder="ชื่อเล่น"
               className="input"
-              defaultValue={"เป้"}
+              defaultValue={"ทรรศ"}
             />
           </div>
           <div className="box-show">
@@ -72,7 +72,7 @@ export default function Setting({}: Props) {
               type="text"
               placeholder="อีเมล"
               className="input"
-              defaultValue={"thawitchai@gmail.com"}
+              defaultValue={"Tat_Sutummawong@gmail.com"}
             />
           </div>
           <div className="box-show">

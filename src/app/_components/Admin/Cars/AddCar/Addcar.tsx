@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import "./style.css";
 type Props = {};
@@ -126,13 +127,22 @@ export default function Addcar({}: Props) {
             onChange={handleChang}
           />
         </div>
-        <div className="input-form btn">
+        <div className="input-form btn-2">
           {Object.keys(form).length < 10 ? (
-            <button className="Link bg-red-500 hover:bg-red-600">
+            <button
+              className="Link bg-red-500 hover:bg-red-600"
+              onClick={(e) => e.preventDefault()}
+            >
               <h1>กรอกให้ครบ!!</h1>
             </button>
           ) : (
-            <button className="Link bg-green-500 hover:bg-green-600">
+            <button
+              className="Link bg-green-500 hover:bg-green-600"
+              onClick={(e) => {
+                e.preventDefault();
+                console.log(form);
+              }}
+            >
               <h1>ยืนยันการจอง</h1>
             </button>
           )}

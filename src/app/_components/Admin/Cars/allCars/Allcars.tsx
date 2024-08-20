@@ -1,11 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import Link from "next/link";
 type Props = {};
 
 export default function Allcars({}: Props) {
+  const [dataType, setDataType] = useState([]);
   const [select, setSelect] = useState(1);
+
+  useEffect(() => {
+    getDataType();
+  }, []);
+  const getDataType = async () => {
+    await fetch("/api/type_car")
+      .then((res) => res.json())
+      .then((res) => setDataType(res));
+  };
   return (
     <div className="all-car">
       <div className="box-count">
@@ -14,7 +24,10 @@ export default function Allcars({}: Props) {
             name=""
             id=""
             className="h-full w-3/5 rounded-xl "
-            onChange={(e) => setSelect(Number(e.target.value))}
+            onChange={(e) => {
+              setSelect(Number(e.target.value));
+              getDataType;
+            }}
           >
             <option value={1} className="text-center text-[#1B98E0]">
               กรุณาเลือก
@@ -128,57 +141,59 @@ export default function Allcars({}: Props) {
       ) : (
         ""
       )}
-      {select == 3 ? (
-        <div className="box-table">
-          <div className="relative overflow-x-auto table-2 table-center">
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                  <th scope="col" className="px-6 py-3 text-black">
-                    รหัสรถปรเภท
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-black">
-                    ชื่อประเภท
-                  </th>
+      {select == 3
+        ? dataType.map((item, index) => {
+            return (
+              <div className="box-table" key={index}>
+                <div className="relative overflow-x-auto table-2 table-center">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <tr>
+                        <th scope="col" className="px-6 py-3 text-black">
+                          รหัสรถปรเภท
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-black">
+                          ชื่อประเภท
+                        </th>
 
-                  <th scope="col" className="px-6 py-3 text-black">
-                    ตอบสนอง
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 box-tr">
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    1524
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Nissan
-                  </td>
+                        <th scope="col" className="px-6 py-3 text-black">
+                          ตอบสนอง
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 box-tr">
+                        <td
+                          scope="row"
+                          className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                        >
+                          {item["tid"]}
+                        </td>
+                        <td
+                          scope="row"
+                          className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                        >
+                          {item["tname"]}
+                        </td>
 
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    <Link href={""}>
-                      <button className="btn bg-red-500 hover:bg-red-600">
-                        ลบ
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
+                        <td
+                          scope="row"
+                          className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                        >
+                          <Link href={""}>
+                            <button className="btn bg-red-500 hover:bg-red-600">
+                              ลบ
+                            </button>
+                          </Link>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            );
+          })
+        : ""}
     </div>
   );
 }

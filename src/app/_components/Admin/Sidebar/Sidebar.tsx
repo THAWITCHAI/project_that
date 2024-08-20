@@ -52,7 +52,7 @@ export default function Sidebar({}: Props) {
           />
         </div>
         <div className="box-contact">
-          <h1 className="name">Thawitchai</h1>
+          <h1 className="name">That</h1>
           <h1 className="status">Admin</h1>
         </div>
       </div>
@@ -110,6 +110,34 @@ export default function Sidebar({}: Props) {
           </div>
         </Link>
       </div>
+
+      <div className="box-menu-1">
+        <Link href={"/admin/car/add-type"}>
+          <div className="menu-item">
+            <Image
+              src={"/car.png"}
+              width={24}
+              height={24}
+              alt=""
+              className="Image"
+            />
+            เพิ่มประเภทรถ
+          </div>
+        </Link>
+        <Link href={"/admin/user/add-role"}>
+          <div className="menu-item">
+            <Image
+              src={"/admin.png"}
+              width={24}
+              height={24}
+              alt=""
+              className="Image"
+            />
+            เพิ่มสิทธิ์ผู้ใช้
+          </div>
+        </Link>
+      </div>
+
       <div className="box-menu-1">
         <Link href={"/admin/list"}>
           <div className="menu-item">
@@ -135,9 +163,6 @@ export default function Sidebar({}: Props) {
             ออกจากระบบ
           </div>
         </Link>
-      </div>
-      <div className="box-menu-2">
-        <button className="time">{time ? formatTime(time) : "Loading..."}</button>
       </div>
     </div>
   );
