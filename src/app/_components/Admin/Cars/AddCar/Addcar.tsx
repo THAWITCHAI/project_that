@@ -37,7 +37,7 @@ export default function Addcar({}: Props) {
           />
         </div>
         <div className="input-form">
-          <div className="title">ยี่ห้อ</div>
+          <div className="title">รุ่น</div>
           <input
             required
             type="text"

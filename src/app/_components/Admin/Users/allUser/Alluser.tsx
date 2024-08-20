@@ -129,7 +129,7 @@ export default function Alluser({}: Props) {
                   รหัสบทบาท
                 </th>
                 <th scope="col" className="px-6 py-3 text-black">
-                  ชื่อ
+                  ชื่อบทบาท
                 </th>
 
                 <th scope="col" className="px-6 py-3 text-black">
