@@ -134,14 +134,12 @@ export default function Setting({}: Props) {
           </div>
           <div className="box-show-btn">
             <button className="btn text-white text-xl rounded-lg bg-yellow-500 w-full h-full">
-              <Link href={"/admin/car/all-car"}>กลับ</Link>
+              <Link href={"/client/booking"}>กลับ</Link>
             </button>
           </div>
           <div className="box-show-btn">
             {file == "" ? (
-              <button className="btn text-white text-xl rounded-lg bg-gray-500">
-                อัพเดท
-              </button>
+              ""
             ) : (
               <button className="btn text-white text-xl rounded-lg bg-green-500">
                 อัพเดท
