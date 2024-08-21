@@ -1,11 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import Link from "next/link";
 type Props = {};
 
 export default function Alluser({}: Props) {
   const [select, setSelect] = useState(1);
+  const [dataRole, setDataRole] = useState([]);
+  const getDataRole = () => {
+    fetch("/api/role")
+      .then((res) => res.json())
+      .then((res) => setDataRole(res));
+  };
+
+  useEffect(() => {
+    getDataRole();
+  }, []);
   return (
     <div className="all-user">
       <div className="box-count">
@@ -70,7 +80,7 @@ export default function Alluser({}: Props) {
                     scope="row"
                     className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    Tat Sutummawong 
+                    Tat Sutummawong
                   </td>
                   <td
                     scope="row"
@@ -121,52 +131,59 @@ export default function Alluser({}: Props) {
       )}
       {select == 3 ? (
         <div className="box-table">
-        <div className="relative overflow-x-auto table-2 table-user">
-          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th scope="col" className="px-6 py-3 text-black">
-                  รหัสบทบาท
-                </th>
-                <th scope="col" className="px-6 py-3 text-black">
-                  ชื่อบทบาท
-                </th>
+          <div className="relative overflow-x-auto table-2 table-user">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" className="px-6 py-3 text-black">
+                    รหัสบทบาท
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-black">
+                    ชื่อบทบาท
+                  </th>
 
-                <th scope="col" className="px-6 py-3 text-black">
-                  ตอบสนอง
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 box-tr">
-                <td
-                  scope="row"
-                  className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  5145
-                </td>
-                <td
-                  scope="row"
-                  className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  User
-                </td>
+                  <th scope="col" className="px-6 py-3 text-black">
+                    ตอบสนอง
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {dataRole.map((item, index) => {
+                  return (
+                    <tr
+                      key={index}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 box-tr"
+                    >
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item['rid']}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item['rname']}
+                      </td>
 
-                <td
-                  scope="row"
-                  className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  <Link href={""}>
-                    <button className="btn bg-red-500 hover:bg-red-600">
-                      ลบ
-                    </button>
-                  </Link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        <Link href={""}>
+                          <button className="btn bg-red-500 hover:bg-red-600">
+                            ลบ
+                          </button>
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
       ) : (
         ""
       )}

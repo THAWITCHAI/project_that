@@ -1,10 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 type Props = {};
 
 export default function Addcar({}: Props) {
   const [form, setForm] = useState({});
+  const [status, setStatusAPI] = useState([]);
+  const [typeAPI, setTypeAPI] = useState([]);
+  useEffect(() => {
+    // getStatus();
+    getType();
+  }, []);
+  const getStatus = async () => {
+    await fetch("/api/status")
+      .then((res) => res.json())
+      .then((res) => setStatusAPI(res));
+  };
+  const getType = async () => {
+    await fetch("/api/type_car")
+      .then((res) => res.json())
+      .then((res) => setTypeAPI(res));
+  };
 
   const handleChang = (e: any) => {
     setForm({
@@ -95,12 +111,16 @@ export default function Addcar({}: Props) {
         <div className="input-form">
           <div className="title">ประเภทรถ</div>
           <select name="ctype" onChange={handleChang} className="input">
-            <option value="" className="text-black">
-              รถยนต์
+            <option value={0} className="text-black">
+              กรุณาเลือก...
             </option>
-            <option value="" className="text-black">
-              มอเตอร์ไซต์
-            </option>
+            {typeAPI.map((item, index) => {
+              return (
+                <option key={index} value={item["tid"]} className="text-black">
+                  {item["tname"]}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div className="input-form">
