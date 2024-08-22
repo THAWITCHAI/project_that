@@ -1,21 +1,37 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import "./style.css";
 type Props = {};
 
 export default function Addcar({}: Props) {
-  const [form, setForm] = useState({});
-  const [status, setStatusAPI] = useState([]);
+  const [form, setForm] = useState({}); // ตัวแปรเก็บค่าข้อมูล
   const [typeAPI, setTypeAPI] = useState([]);
+  const [base64, setBase64] = useState<String | null>(null);
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBase64(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  
+  // ส่งข้อมูลรถไป API
+  const handleSubmit = () => {
+    fetch("/api/car", {
+      method: "POST",
+      body: JSON.stringify(Object.assign({}, form, { cpath: String(base64) })),
+    });
+  };
+
   useEffect(() => {
-    // getStatus();
     getType();
   }, []);
-  const getStatus = async () => {
-    await fetch("/api/status")
-      .then((res) => res.json())
-      .then((res) => setStatusAPI(res));
-  };
+
   const getType = async () => {
     await fetch("/api/type_car")
       .then((res) => res.json())
@@ -110,7 +126,7 @@ export default function Addcar({}: Props) {
         </div>
         <div className="input-form">
           <div className="title">ประเภทรถ</div>
-          <select name="ctype" onChange={handleChang} className="input">
+          <select name="tid" onChange={handleChang} className="input">
             <option value={0} className="text-black">
               กรุณาเลือก...
             </option>
@@ -125,14 +141,17 @@ export default function Addcar({}: Props) {
         </div>
         <div className="input-form">
           <div className="title">สถานะรถ</div>
-          <select className="input" name="cstatus" onChange={handleChang}>
-            <option value="152" className="text-green-500">
+          <select className="input" name="sid" onChange={handleChang}>
+            <option value="0" className="text-black">
+              เลือก
+            </option>
+            <option value="1" className="text-green-500">
               ว่าง
             </option>
-            <option value="" className="text-red-500">
+            <option value="2" className="text-red-500">
               ไม่ว่าง
             </option>
-            <option value="" className="text-yellow-500">
+            <option value="3" className="text-yellow-500">
               กำลังใช้งาน
             </option>
           </select>
@@ -144,11 +163,11 @@ export default function Addcar({}: Props) {
             className="input file"
             placeholder="#1542"
             name="cimg"
-            onChange={handleChang}
+            onChange={handleFileChange}
           />
         </div>
         <div className="input-form btn-2">
-          {Object.keys(form).length < 10 ? (
+          {Object.keys(form).length < 9 ? (
             <button
               className="Link bg-red-500 hover:bg-red-600"
               onClick={(e) => e.preventDefault()}
@@ -160,7 +179,7 @@ export default function Addcar({}: Props) {
               className="Link bg-green-500 hover:bg-green-600"
               onClick={(e) => {
                 e.preventDefault();
-                console.log(form);
+                handleSubmit();
               }}
             >
               <h1>ยืนยันการจอง</h1>

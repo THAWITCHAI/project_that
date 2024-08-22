@@ -13,7 +13,7 @@ export default function Home({}: Props) {
   const router = useRouter();
 
   const handleSubmit = () => {
-    if (email == "thawitchai@gmail.com" && pwd == "13495000") {
+    if (email == "admin" && pwd == "1234") {
       return router.replace("/client/booking");
     }else{
       return router.replace("/admin/welcome");
