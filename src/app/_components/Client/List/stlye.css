@@ -66,12 +66,8 @@
     display: flex;
     justify-content: space-around;
 }
-<<<<<<< Updated upstream
-.List .list-contact .list-table .table .action .detail{
-=======
 
 .List .list-contact .list-table .table .action button {
->>>>>>> Stashed changes
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,10 +76,6 @@
     color: aliceblue;
     border-radius: 5px;
 }
-<<<<<<< Updated upstream
-.List .list-contact .list-table .table .action button:active{
-    transform: scale(0.9);
-=======
 
 .List .list-contact .list-table .table .action .detail {
     display: flex;
@@ -94,5 +86,4 @@
     background: #E3B505;
     color: aliceblue;
     border-radius: 5px;
->>>>>>> Stashed changes
 }
