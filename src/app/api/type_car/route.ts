@@ -12,5 +12,12 @@ export async function POST(req: any) {
 export async function GET() {
   const promisePool = mysqlPool.promise();
   const [row] = await promisePool.query("SELECT * FROM type_cars");
-  return NextResponse.json(row)
+  return NextResponse.json(row);
+}
+
+export async function DELETE(req: any) {
+  const tid = await req.json();
+  const promisePool = mysqlPool.promise();
+  await promisePool.query("DELETE FROM type_cars WHERE ?", [tid]);
+  return NextResponse.json({ massage: "Delete Successfully" }, { status: 200 });
 }

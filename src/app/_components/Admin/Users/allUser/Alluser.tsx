@@ -10,12 +10,21 @@ export default function Alluser({}: Props) {
   const getDataRole = () => {
     fetch("/api/role")
       .then((res) => res.json())
-      .then((res) => setDataRole(res));
+      .then((res: any) => setDataRole(res));
   };
 
   useEffect(() => {
     getDataRole();
   }, []);
+
+  const handleDeteleRole = (id: any) => {
+    fetch("/api/role", {
+      method: "DELETE",
+      body: JSON.stringify({ rid: id }),
+    })
+      .then((res) => res.json())
+      .then((res) => alert(res["massage"]));
+  };
   return (
     <div className="all-user">
       <div className="box-count">
@@ -23,7 +32,7 @@ export default function Alluser({}: Props) {
           <select
             name=""
             id=""
-            className="h-full w-3/5 rounded-xl "
+            className="h-full w-3/5 rounded-xl outline-none"
             onChange={(e) => setSelect(Number(e.target.value))}
           >
             <option value={1} className="text-center text-[#1B98E0]">
@@ -37,7 +46,10 @@ export default function Alluser({}: Props) {
             </option>
           </select>
         </div>
-        <div className="h1">จำนวนทั้งหมด: 20</div>
+        {select == 2 && <div className="h1">จำนวนทั้งหมด: {0}</div>}
+        {select == 3 && (
+          <div className="h1">จำนวนทั้งหมด: {Object.keys(dataRole).length}</div>
+        )}
       </div>
       {select == 2 ? (
         <div className="box-table">
@@ -158,24 +170,28 @@ export default function Alluser({}: Props) {
                         scope="row"
                         className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        {item['rid']}
+                        {item["rid"]}
                       </td>
                       <td
                         scope="row"
                         className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        {item['rname']}
+                        {item["rname"]}
                       </td>
 
                       <td
                         scope="row"
                         className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        <Link href={""}>
-                          <button className="btn bg-red-500 hover:bg-red-600">
-                            ลบ
-                          </button>
-                        </Link>
+                        <button
+                          className="btn bg-red-500 hover:bg-red-600"
+                          onClick={() => {
+                            handleDeteleRole(item["rid"]);
+                            getDataRole();
+                          }}
+                        >
+                          ลบ
+                        </button>
                       </td>
                     </tr>
                   );

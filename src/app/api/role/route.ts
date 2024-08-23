@@ -14,3 +14,11 @@ export async function GET() {
   const [row] = await promisePool.query("SELECT * FROM roles");
   return NextResponse.json(row)
 }
+
+export async function DELETE(req: any) {
+  const data = await req.json();
+  // console.log(data)
+  const promisePool = mysqlPool.promise();
+  await promisePool.query("DELETE FROM roles WHERE ? ", data);
+  return NextResponse.json({ massage: "Delete Successfully" }, { status: 200 });
+}

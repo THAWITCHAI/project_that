@@ -38,6 +38,18 @@ export default function Allcars({}: Props) {
         getDatacar();
       });
   };
+  const handleDeleteType = async (cid: any) => {
+    await fetch("/api/type_car/", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tid: cid }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        alert(res["massage"]);
+        getDataType();
+      });
+  };
   return (
     <div className="all-car">
       <div className="box-count">
@@ -61,7 +73,12 @@ export default function Allcars({}: Props) {
             </option>
           </select>
         </div>
-        <div className="h1">จำนวนทั้งหมด: {Object.keys(cars).length}</div>
+        {select == 2 && (
+          <div className="h1">จำนวนทั้งหมด: {Object.keys(cars).length}</div>
+        )}
+        {select == 3 && (
+          <div className="h1">จำนวนทั้งหมด: {Object.keys(dataType).length}</div>
+        )}
       </div>
       {select == 2 ? (
         <div className="box-table">
@@ -241,7 +258,12 @@ export default function Allcars({}: Props) {
                         scope="row"
                         className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        <button className="btn bg-red-500 hover:bg-red-600">
+                        <button
+                          className="btn bg-red-500 hover:bg-red-600"
+                          onClick={() => {
+                            handleDeleteType(item["tid"]);
+                          }}
+                        >
                           ลบ
                         </button>
                       </td>
