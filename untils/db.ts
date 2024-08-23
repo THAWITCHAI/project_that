@@ -1,3 +1,3 @@
-const mysql = require('mysql2')
+import mysql from 'mysql2'
 
-export const mysqlPool = mysql.createPool(process.env.MYSQL_URI)
+export const mysqlPool = mysql.createPool(String(process.env.MYSQL_URI))
