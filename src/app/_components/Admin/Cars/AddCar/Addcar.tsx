@@ -19,13 +19,13 @@ export default function Addcar({}: Props) {
     }
   };
 
-  
   // ส่งข้อมูลรถไป API
   const handleSubmit = () => {
     fetch("/api/car", {
       method: "POST",
       body: JSON.stringify(Object.assign({}, form, { cpath: String(base64) })),
-    });
+    }).then((res)=>res.json())
+    .then((res)=>alert(res['massage']))
   };
 
   useEffect(() => {

@@ -7,14 +7,36 @@ type Props = {};
 export default function Allcars({}: Props) {
   const [dataType, setDataType] = useState([]);
   const [select, setSelect] = useState(1);
+  const [cars, setCars] = useState([]);
 
   useEffect(() => {
     getDataType();
+    getDatacar();
   }, []);
+
   const getDataType = async () => {
     await fetch("/api/type_car")
       .then((res) => res.json())
       .then((res) => setDataType(res));
+  };
+
+  const getDatacar = async () => {
+    await fetch("/api/car")
+      .then((res) => res.json())
+      .then((res) => setCars(res));
+  };
+
+  const handleDelete = async (cid: any) => {
+    await fetch("/api/car/delete", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cid: cid }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        alert(res["massage"]);
+        getDatacar();
+      });
   };
   return (
     <div className="all-car">
@@ -23,7 +45,7 @@ export default function Allcars({}: Props) {
           <select
             name=""
             id=""
-            className="h-full w-3/5 rounded-xl "
+            className="h-full w-3/5 rounded-xl outline-none"
             onChange={(e) => {
               setSelect(Number(e.target.value));
             }}
@@ -39,7 +61,7 @@ export default function Allcars({}: Props) {
             </option>
           </select>
         </div>
-        <div className="h1">จำนวนทั้งหมด: 20</div>
+        <div className="h1">จำนวนทั้งหมด: {Object.keys(cars).length}</div>
       </div>
       {select == 2 ? (
         <div className="box-table">
@@ -69,70 +91,107 @@ export default function Allcars({}: Props) {
                     สถานะรถ
                   </th>
                   <th scope="col" className="px-6 py-3 text-black">
+                    ประเภทรถ
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-black">
                     ตอบสนอง
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 box-tr">
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    1524
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Nissan
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    GTR-35
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    กข 542 อุบลราชธานี
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-green-500 whitespace-nowrap dark:text-white"
-                  >
-                    2,000 ฿
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    6
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-green-500 whitespace-nowrap dark:text-white"
-                  >
-                    กำลังใช้งาน
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    <Link href={"/admin/car/detail-car/1254"}>
-                      <button className="btn mr-4 bg-yellow-500 hover:bg-yellow-600">
-                        เพิ่มเติม
-                      </button>
-                    </Link>
-                    <Link href={""}>
-                      <button className="btn bg-red-500 hover:bg-red-600">
-                        ลบ
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
+                {cars.map((item, index) => {
+                  return (
+                    <tr
+                      key={index}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 box-tr"
+                    >
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item["cid"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item["cbrand"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item["cmodel"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item["clicense"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-green-500 whitespace-nowrap dark:text-white"
+                      >
+                        {item["cprice"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item["cseat"]}
+                      </td>
+                      {item["sid"] == "1" && (
+                        <td
+                          scope="row"
+                          className="title px-6 py-4 font-light text-green-500 whitespace-nowrap dark:text-white"
+                        >
+                          {item["sname"]}
+                        </td>
+                      )}
+                      {item["sid"] == "2" && (
+                        <td
+                          scope="row"
+                          className="title px-6 py-4 font-light text-red-500 whitespace-nowrap dark:text-white"
+                        >
+                          {item["sname"]}
+                        </td>
+                      )}
+                      {item["sid"] == "3" && (
+                        <td
+                          scope="row"
+                          className="title px-6 py-4 font-light text-yellow-500 whitespace-nowrap dark:text-white"
+                        >
+                          {item["sname"]}
+                        </td>
+                      )}
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-green-500 whitespace-nowrap dark:text-white"
+                      >
+                        {item["tname"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        <Link href={"/admin/car/detail-car/" + item["cid"]}>
+                          <button className="btn mr-4 bg-yellow-500 hover:bg-yellow-600">
+                            เพิ่มเติม
+                          </button>
+                        </Link>
+                        <button
+                          className="btn bg-red-500 hover:bg-red-600"
+                          onClick={() => {
+                            handleDelete(item["cid"]);
+                          }}
+                        >
+                          ลบ
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -161,29 +220,30 @@ export default function Allcars({}: Props) {
               <tbody>
                 {dataType.map((item, index) => {
                   return (
-                    <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 box-tr">
+                    <tr
+                      key={index}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 box-tr"
+                    >
                       <td
                         scope="row"
                         className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        {item['tid']}
+                        {item["tid"]}
                       </td>
                       <td
                         scope="row"
                         className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        {item['tname']}
+                        {item["tname"]}
                       </td>
 
                       <td
                         scope="row"
                         className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        <Link href={""}>
-                          <button className="btn bg-red-500 hover:bg-red-600">
-                            ลบ
-                          </button>
-                        </Link>
+                        <button className="btn bg-red-500 hover:bg-red-600">
+                          ลบ
+                        </button>
                       </td>
                     </tr>
                   );
