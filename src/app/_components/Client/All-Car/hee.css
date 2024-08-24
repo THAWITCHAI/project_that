@@ -5,11 +5,11 @@
   padding: 2rem;
   display: grid;
   overflow-y: scroll;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
 }
 .booking .card {
-    margin: 1rem;
+  margin: 1rem;
   width: 20rem;
   height: 20rem;
   padding: 1.5%;
@@ -77,6 +77,6 @@
   border: 1px solid #3bb273;
   color: #3bb273;
 }
-.booking .card .card-btn .btn:active{
-    transform: scale(0.9);
+.booking .card .card-btn .btn:active {
+  transform: scale(0.9);
 }
