@@ -7,20 +7,38 @@ type Props = {};
 export default function Alluser({}: Props) {
   const [select, setSelect] = useState(1);
   const [dataRole, setDataRole] = useState([]);
+  const [dataUer, setDataUser] = useState([]);
+
   const getDataRole = () => {
     fetch("/api/role")
       .then((res) => res.json())
       .then((res: any) => setDataRole(res));
   };
 
+  const getDataUser = async () => {
+    await fetch("/api/user")
+      .then((res) => res.json())
+      .then((res) => setDataUser(res));
+  };
+
   useEffect(() => {
     getDataRole();
+    getDataUser();
   }, []);
 
   const handleDeteleRole = (id: any) => {
     fetch("/api/role", {
       method: "DELETE",
       body: JSON.stringify({ rid: id }),
+    })
+      .then((res) => res.json())
+      .then((res) => alert(res["massage"]));
+  };
+
+  const handleDeteleUser = (id: any) => {
+    fetch("/api/user", {
+      method: "DELETE",
+      body: JSON.stringify({ uid: id }),
     })
       .then((res) => res.json())
       .then((res) => alert(res["massage"]));
@@ -46,7 +64,9 @@ export default function Alluser({}: Props) {
             </option>
           </select>
         </div>
-        {select == 2 && <div className="h1">จำนวนทั้งหมด: {0}</div>}
+        {select == 2 && (
+          <div className="h1">จำนวนทั้งหมด: {Object.keys(dataUer).length}</div>
+        )}
         {select == 3 && (
           <div className="h1">จำนวนทั้งหมด: {Object.keys(dataRole).length}</div>
         )}
@@ -81,59 +101,71 @@ export default function Alluser({}: Props) {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 box-tr">
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    5134
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Tat Sutummawong
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    เป้
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Tat_Sutummawong@gmail.com
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-green-500 whitespace-nowrap dark:text-white"
-                  >
-                    064-166-9191
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    User
-                  </td>
-                  <td
-                    scope="row"
-                    className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    <Link href={"/admin/user/detail-user/1524"}>
-                      <button className="btn mr-4 bg-yellow-500 hover:bg-yellow-600">
-                        เพิ่มเติม
-                      </button>
-                    </Link>
-                    <Link href={""}>
-                      <button className="btn bg-red-500 hover:bg-red-600">
-                        ลบ
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
+                {dataUer.map((item, index) => {
+                  return (
+                    <tr
+                      key={index}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 box-tr"
+                    >
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item["uid"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item["uname"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item["unick_name"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item["uemail"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-green-500 whitespace-nowrap dark:text-white"
+                      >
+                        {item["uphone"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {item["rname"]}
+                      </td>
+                      <td
+                        scope="row"
+                        className="title px-6 py-4 font-light text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        <Link href={"/admin/user/detail-user/" + item["uid"]}>
+                          <button className="btn mr-4 bg-yellow-500 hover:bg-yellow-600">
+                            เพิ่มเติม
+                          </button>
+                        </Link>
+                        <button
+                          className="btn bg-red-500 hover:bg-red-600"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleDeteleUser(item["uid"]);
+                            getDataUser();
+                          }}
+                        >
+                          ลบ
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
