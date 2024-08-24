@@ -133,8 +133,11 @@ export default function Setting({}: Props) {
             />
           </div>
           <div className="box-show-btn">
-            <button className="btn text-white text-xl rounded-lg bg-yellow-500 w-full h-full">
-              <Link href={"/client/booking"}>กลับ</Link>
+            <button
+              className="btn text-white text-xl rounded-lg bg-yellow-500 w-full h-full"
+              onClick={() => [history.back()]}
+            >
+              กลับ
             </button>
           </div>
           <div className="box-show-btn">
