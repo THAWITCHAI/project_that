@@ -4,10 +4,12 @@ import "./style.css";
 import "./reponsive.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 type Props = {};
 
 export default function Setting({}: Props) {
+  const {data:session} = useSession()
   const [file, setFile] = useState("");
   return (
     <div className="setting-bg">
@@ -27,7 +29,7 @@ export default function Setting({}: Props) {
               placeholder="รหัสผู้ใช้"
               className="input"
               disabled
-              defaultValue={1349}
+              defaultValue={session?.user.uid}
             />
           </div>
           <div className="box-show">
@@ -42,7 +44,7 @@ export default function Setting({}: Props) {
               type="text"
               placeholder="ชื่อ - นามสกุล"
               className="input"
-              defaultValue={"Tat Sutummawong"}
+              defaultValue={session?.user.uname}
             />
           </div>
           <div className="box-show">
@@ -57,7 +59,7 @@ export default function Setting({}: Props) {
               type="text"
               placeholder="ชื่อเล่น"
               className="input"
-              defaultValue={"ทรรศ"}
+              defaultValue={session?.user.unick_name}
             />
           </div>
           <div className="box-show">
@@ -72,7 +74,7 @@ export default function Setting({}: Props) {
               type="text"
               placeholder="อีเมล"
               className="input"
-              defaultValue={"Tat_Sutummawong@gmail.com"}
+              defaultValue={session?.user.uemail}
             />
           </div>
           <div className="box-show">
@@ -87,7 +89,7 @@ export default function Setting({}: Props) {
               type="text"
               placeholder="รหัสผ่าน"
               className="input"
-              defaultValue={"13495000"}
+              defaultValue={session?.user.upwd}
             />
           </div>
           <div className="box-show">
@@ -102,7 +104,7 @@ export default function Setting({}: Props) {
               type="text"
               placeholder="เบอร์โทร"
               className="input"
-              defaultValue={"065-297-4104"}
+              defaultValue={session?.user.uphone}
             />
           </div>
           <div className="box-show">
@@ -117,7 +119,7 @@ export default function Setting({}: Props) {
               type="text"
               placeholder="สถานะ"
               className="input"
-              defaultValue={"User"}
+              defaultValue={session?.user.rname}
               disabled
             />
           </div>

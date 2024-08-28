@@ -151,7 +151,7 @@ export default function Sidebar({}: Props) {
             รายการจอง
           </div>
         </Link>
-        <Link href={"/"}>
+        <Link href={"/api/auth/signout"}>
           <div className="menu-item">
             <Image
               src={"/logout.png"}

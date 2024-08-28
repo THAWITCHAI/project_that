@@ -93,7 +93,7 @@ export default function Sidebar({}: Props) {
             รถทั้งหมด
           </div>
         </button>
-        <button className="item menu-4" onClick={() => router.replace("/")}>
+        <button className="item menu-4" onClick={() => router.replace("/api/auth/signout")}>
           <Image
             src={"/logout.png"}
             width={24}

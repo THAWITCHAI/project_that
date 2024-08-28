@@ -1,5 +1,5 @@
 "use client";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -18,11 +18,12 @@ export default function Home({}: Props) {
     if (email === "" && pwd === "") {
       return alert("อีเมล หรือ รหัสผ่านไม่ถูกต้อง");
     } else {
-      if (email == "admin" && pwd == "1234") {
-        return router.replace("/client/booking");
-      } else {
-        return router.replace("/admin/welcome");
-      }
+      signIn("credentials", {
+        username: email,
+        password: pwd,
+        redirect: true,
+        callbackUrl: "/",
+      });
     }
   };
   if (status === "unauthenticated" || status === "loading") {
@@ -213,7 +214,12 @@ export default function Home({}: Props) {
       </div>
     );
   }
-  if(status==='authenticated'){
-    return
+  if (status === "authenticated" && session) {
+    if(session.user.rname==='User'){
+      return router.replace("/client/booking");
+    }
+    if(session.user.rname==='Admin'){
+      return router.replace("/admin/welcome");
+    }
   }
 }
