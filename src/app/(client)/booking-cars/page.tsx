@@ -45,20 +45,6 @@ export default function AllCars({ }: Props) {
                             </SelectGroup>
                         </SelectContent>
                     </Select>
-                    <Select >
-                        <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="เลือกสถานะรถ" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectGroup>
-                                <SelectLabel>สถานะรถ</SelectLabel>
-                                <SelectItem className='text-green-500 hover:text-green-600' value="A">พร้อมใช้งาน</SelectItem>
-                                <SelectItem className='text-red-500 hover:text-red-600' value="B">ไม่พร้อมใช้งาน</SelectItem>
-                                <SelectItem className='text-yellow-500 hover:text-yellow-600' value="C">รอคืน</SelectItem>
-                                <SelectItem className='text-blue-500 hover:text-blue-600' value="D">รออนุมัติ</SelectItem>
-                            </SelectGroup>
-                        </SelectContent>
-                    </Select>
                 </div>
                 <div className='grid grid-cols-4 gap-4 w-full py-10 px-10'>
                     <Card className='w-[15rem] rounded-none hover:scale-110 transition-all ease-in-out h-[20rem] shadow-md border gap-2 flex flex-col items-center justify-start overflow-hidden'>
@@ -67,10 +53,7 @@ export default function AllCars({ }: Props) {
                         <button className='w-[70%] my-2 bg-green-500 text-white py-2 flex justify-center items-center gap-2 rounded-sm'>
                             <Image src={'/image-gallery.png'} width={24} height={24} alt='' />
                             จองรถ</button>
-                        <div className='w-full h-fit flex justify-between items-center gap-2'>
-                            <p className='text-end px-2 font-light text-sm text-green-500'>กำลังใช้งาน</p>
-                            <p className='text-end px-2 font-light text-sm text-yellow-600'>จำนวนการใช้รถ 12</p>
-                        </div>
+                        <p className='w-full text-end p-2 font-light text-sm text-yellow-600'>จำนวนการใช้รถ 12</p>
                     </Card>
                 </div>
             </div>

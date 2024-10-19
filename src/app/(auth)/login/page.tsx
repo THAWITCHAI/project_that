@@ -99,16 +99,6 @@ export default function Login({ }: Props) {
                             </div>
                             <div className='w-full justify-center items-center flex gap-2'>
                                 <div className="space-y-1">
-                                    <Label htmlFor="current">รหัสผ่าน</Label>
-                                    <Input id="current" type="password" />
-                                </div>
-                                <div className="space-y-1">
-                                    <Label htmlFor="current">ยืนยันรหัส</Label>
-                                    <Input id="current" type="password" />
-                                </div>
-                            </div>
-                            <div className='w-full justify-center items-center flex gap-2'>
-                                <div className="space-y-1">
                                     <Label htmlFor="current">รูปโปรไฟล์</Label>
                                     <Input id="current" type="file" className='py-2' />
                                 </div>
