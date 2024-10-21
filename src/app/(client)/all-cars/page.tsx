@@ -65,8 +65,9 @@ export default function AllCars({ }: Props) {
                         <Image src={'/car_item.png'} width={600} height={600} alt='' />
                         <h1 className='w-full text-center p-2 bg-slate-800 text-white'>Honda Civic 2024</h1>
                         <button className='w-[70%] my-2 bg-green-500 text-white py-2 flex justify-center items-center gap-2 rounded-sm'>
-                            <Image src={'/image-gallery.png'} width={24} height={24} alt='' />
-                            จองรถ</button>
+                            <Image src={'/see-white.png'} width={24} height={24} alt='' />
+                            ดูรายละเอียดรถ
+                        </button>
                         <div className='w-full h-fit flex justify-between items-center gap-2'>
                             <p className='text-end px-2 font-light text-sm text-green-500'>กำลังใช้งาน</p>
                             <p className='text-end px-2 font-light text-sm text-yellow-600'>จำนวนการใช้รถ 12</p>
