@@ -48,7 +48,7 @@ export default function AllCars({ }: Props) {
                             <SelectGroup>
                                 <SelectLabel>ประเภทรถ</SelectLabel>
                                 <SelectItem value="apple">ทั้งหมด</SelectItem>
-                                <SelectItem value="apple">รถตู้</SelectItem>
+                                <SelectItem value="van">รถตู้</SelectItem>
                                 <SelectItem value="banana">รถสปอร์ต</SelectItem>
                                 <SelectItem value="blueberry">รถแท็กซี่</SelectItem>
                                 <SelectItem value="grapes">รถจักยานยนต์</SelectItem>
@@ -64,10 +64,10 @@ export default function AllCars({ }: Props) {
 
                         <AlertDialog >
                             <AlertDialogTrigger className='w-full flex justify-center items-center outline-none'>
-                                <button className='w-[70%] my-2 bg-green-500 text-white py-2 flex justify-center items-center gap-2 rounded-sm'>
+                                <div className='w-[70%] my-2 bg-green-500 text-white py-2 flex justify-center items-center gap-2 rounded-sm'>
                                     <Image src={'/image-gallery.png'} width={24} height={24} alt='' />
                                     จองรถ
-                                </button>
+                                </div>
                             </AlertDialogTrigger>
                             <AlertDialogContent>
                                 <AlertDialogHeader>

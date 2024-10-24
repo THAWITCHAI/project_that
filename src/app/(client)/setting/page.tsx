@@ -28,37 +28,37 @@ export default function Setting({ }: Props) {
                     <div className='w-full flex justify-center items-center gap-2'>
                         <div className='w-full'>
                             <li className='w-full'>รหัสผู้ใช้</li>
-                            <input disabled type="text" className=' outline-none border w-full h-[3rem] rounded-md px-2 text-slate-500' value={1521} />
+                            <input disabled type="text" className=' outline-none border w-full h-[2.5rem] rounded-md text-sm px-2 text-slate-500' defaultValue={1521} />
                         </div>
                         <div className='w-full'>
                             <li className='w-full'>ชื่อเล่น</li>
-                            <input type="text" className=' outline-none border w-full h-[3rem] rounded-md px-2 text-slate-600' value={'เป้'} />
+                            <input type="text" className=' outline-none border w-full h-[2.5rem] rounded-md text-sm px-2 text-slate-600' defaultValue={'เป้'} />
                         </div>
                     </div>
                     <div className='w-full flex justify-center items-center gap-2'>
                         <div className='w-full'>
                             <li className='w-full'>ชื่อ-นามสกุล</li>
-                            <input type="text" className=' outline-none border w-full h-[3rem] rounded-md px-2 text-slate-600' value={'นาย ธวิชชัย  บุญส่ง'} />
+                            <input type="text" className=' outline-none border w-full h-[2.5rem] rounded-md text-sm px-2 text-slate-600' defaultValue={'นาย ธวิชชัย  บุญส่ง'} />
                         </div>
                         <div className='w-full'>
                             <li className='w-full'>เบอร์โทรศัพท์</li>
-                            <input type="text" className=' outline-none border w-full h-[3rem] rounded-md px-2 text-slate-600' value={'065-2974-104'} />
+                            <input type="text" className=' outline-none border w-full h-[2.5rem] rounded-md text-sm px-2 text-slate-600' defaultValue={'065-2974-104'} />
                         </div>
                     </div>
                     <div className='w-full flex justify-center items-center gap-2'>
                         <div className='w-full'>
                             <li className='w-full'>อีเมล์</li>
-                            <input type="email" className=' outline-none border w-full h-[3rem] rounded-md px-2 text-slate-600' value={'thawitchai@gmail.com'} />
+                            <input type="email" className=' outline-none border w-full h-[2.5rem] rounded-md text-sm px-2 text-slate-600' defaultValue={'thawitchai@gmail.com'} />
                         </div>
                         <div className='w-full'>
                             <li className='w-full'>รหัสผ่านใหม่</li>
-                            <input type="password" className=' outline-none ring-1 ring-green-500 w-full h-[3rem] rounded-md px-2 text-slate-600' placeholder='ถ้าต้องการเปลี่ยนรหัสผ่านใหม่' />
+                            <input type="password" className=' outline-none ring-1 ring-green-500 w-full h-[2.5rem] rounded-md text-sm px-2 text-slate-600' placeholder='ถ้าต้องการเปลี่ยนรหัสผ่านใหม่' />
                         </div>
                     </div>
                     <div className='w-full flex justify-center items-center gap-2'>
                         <div className='w-full'>
                             <li className='w-full'>ภาพโปรไฟล์ใหม่</li>
-                            <Input type="file" className='cursor-pointer outline-none border py-3 w-full h-[3rem] rounded-md px-7 text-slate-600' />
+                            <Input type="file" className='cursor-pointer outline-none border py-2 w-full h-[2.5rem] rounded-md text-sm px-7 text-slate-600' />
                         </div>
                         <div className='w-full flex justify-center flex-col items-center'>
                             <p className='w-full text-center'>ภาพโปรไฟล์เดิม</p>
@@ -84,7 +84,7 @@ export default function Setting({ }: Props) {
                     <div className='w-full flex justify-center items-center gap-2'>
                         <div className='w-full'>
                             <li className='w-full'>ใบขับขี่ใหม่</li>
-                            <Input type="file" className='cursor-pointer outline-none border py-3 w-full h-[3rem] rounded-md px-7 text-slate-600' />
+                            <Input type="file" className='cursor-pointer outline-none border py-2 w-full h-[2.5rem] rounded-md text-sm px-7 text-slate-600' />
                         </div>
                         <div className='w-full flex justify-center flex-col items-center'>
                             <p className='w-full text-center'>ใบขับขี่เดิม</p>
@@ -107,7 +107,7 @@ export default function Setting({ }: Props) {
                             </AlertDialog>
                         </div>
                     </div>
-                    <button className='w-1/2 bg-blue-500 h-[3rem] rounded-md text-white'>อัพเดท</button>
+                    <button className='w-1/2 bg-blue-500 h-[2.5rem] rounded-md text-white'>อัพเดท</button>
                 </div>
             </div>
         </div>

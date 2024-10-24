@@ -48,7 +48,8 @@ export default function AllCars({ }: Props) {
                         <SelectContent>
                             <SelectGroup>
                                 <SelectLabel>ประเภทรถ</SelectLabel>
-                                <SelectItem value="apple">รถตู้</SelectItem>
+                                <SelectItem value="apple">ทั้งหมด</SelectItem>
+                                <SelectItem value="van">รถตู้</SelectItem>
                                 <SelectItem value="banana">รถสปอร์ต</SelectItem>
                                 <SelectItem value="blueberry">รถแท็กซี่</SelectItem>
                                 <SelectItem value="grapes">รถจักยานยนต์</SelectItem>

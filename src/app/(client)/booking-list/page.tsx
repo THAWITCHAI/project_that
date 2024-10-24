@@ -11,6 +11,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import Link from 'next/link'
 
 type Props = object
 
@@ -28,9 +29,9 @@ export default function BookingList({ }: Props) {
                             <TableHead>ชื่อผู้จอง</TableHead>
                             <TableHead>ยีห้อรถ</TableHead>
                             <TableHead>รุ่นรถ</TableHead>
-                            <TableHead>ป้ายทะเบียน</TableHead>
                             <TableHead>วันรับรถ</TableHead>
                             <TableHead>วันคืนรถ</TableHead>
+                            <TableHead>ติดตามสถานะ</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -39,9 +40,11 @@ export default function BookingList({ }: Props) {
                             <TableCell>นาย ธวิชชัย บุญส่ง</TableCell>
                             <TableCell>Honda</TableCell>
                             <TableCell>Honda Civic 2024</TableCell>
-                            <TableCell>1 กต อุบลราชธานี</TableCell>
                             <TableCell>15 ตุลาคม 2567</TableCell>
                             <TableCell>20 ตุลาคม 2567</TableCell>
+                            <TableCell>
+                                <input type="text" className='border px-2 w-[10rem] h-[2rem] text-yellow-500 rounded-md bg-slate-100 text-center' value={"กำลังดำเนินการ"} disabled/>
+                            </TableCell>
                             <TableCell className="flex justify-center items-center gap-2">
                                 {
                                     toggle == true ?
@@ -50,7 +53,9 @@ export default function BookingList({ }: Props) {
                                         <button onClick={() => setToggle(!toggle)} className='bg-red-500 hover:bg-red-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>ลบ</button>
 
                                 }
-                                <button className='bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>รายละเอียด</button>
+                                <button className='bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>
+                                    <Link href={'/booking-list/15'}>รายละเอียด</Link>
+                                </button>
                             </TableCell>
                         </TableRow>
                     </TableBody>

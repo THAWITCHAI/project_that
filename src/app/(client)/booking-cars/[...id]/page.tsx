@@ -14,18 +14,23 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 type Props = object
 
 export default function ConfirmBooking({ }: Props) {
-    const [cardNumber, setCardNumber] = useState('');
+    const router = useRouter()
 
-    const formatCardNumber = (value: string) => {
-        // ลบช่องว่างเดิมทั้งหมดก่อน
-        const newValue = value.replace(/\s+/g, '');
-
-        // จัดรูปแบบโดยเพิ่มช่องว่างทุก 4 ตัวอักษร
-        return newValue.replace(/(.{4})/g, '$1 ').trim();
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const response = await fetch(`/api/checkout/`, {
+            method: 'POST',
+        })
+        if (response.ok) {
+            const { url } = await response.json()
+            console.log(url);
+            return router.push(url)
+        }
     };
 
     return (
@@ -50,42 +55,9 @@ export default function ConfirmBooking({ }: Props) {
                         <input type="text" className='w-full bg-gray-50 border font-lights h-[2rem] text-sm rounded-md outline-none text-slate-700 px-2' placeholder='จังหวัด' />
                         <input type="text" className='w-full bg-gray-50 border font-lights h-[2rem] text-sm rounded-md outline-none text-slate-700 px-2' placeholder='รหัสไปรษณีย์' />
                     </div>
-                    <div className='bg-green-500 text-white w-1/4 text-center text-sm h-[2rem] rounded-md flex justify-center items-center hover:bg-green-600 transition-all ease-in-out'>
-                        <AlertDialog>
-                            <AlertDialogTrigger>
-                                ยืนยันข้อมูล
-                            </AlertDialogTrigger>
-                            <AlertDialogContent>
-                                <AlertDialogHeader>
-                                    <AlertDialogTitle>
-                                        <h1 className='py-2 w-full text-center'>Invoice</h1>
-                                        <div className='w-full h-fit flex justify-start items-center gap-2'>
-                                            <Image src={'/visa.png'} width={24} height={24} alt='' />
-                                            <Image src={'/card.png'} width={24} height={24} alt='' />
-                                            <Image src={'/jcb.png'} width={24} height={24} alt='' />
-                                        </div></AlertDialogTitle>
-                                    <AlertDialogDescription>
-                                        <div className='w-full grid grid-cols-2 gap-2'>
-                                            <input maxLength={19} value={cardNumber} className='w-full border h-[2rem] rounded-md px-2 outline-none bg-gray-50' type="text" placeholder="Card Number" required
-                                                onChange={(e) => {
-                                                    const formatted = formatCardNumber(e.target.value)
-                                                    setCardNumber(formatted)
-                                                }}
-                                            />
-                                            <input className='w-full border h-[2rem] rounded-md px-2 outline-none bg-gray-50' type="number" placeholder="Name or Card" required />
-                                            <input className='w-full border h-[2rem] rounded-md px-2 outline-none bg-gray-50' type="date" placeholder="Expiration Date (MM/YY)" required />
-                                            <input maxLength={4} className='w-full border h-[2rem] rounded-md px-2 outline-none bg-gray-50' type="password" placeholder="CVV" required />
-                                        </div>
-                                    </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                    <AlertDialogCancel>ปิด</AlertDialogCancel>
-                                    <AlertDialogAction>ชำระเงิน</AlertDialogAction>
-                                </AlertDialogFooter>
-                            </AlertDialogContent>
-                        </AlertDialog>
-
-                    </div>
+                    <button onClick={handleSubmit} className='bg-green-500 text-white w-1/4 text-center text-sm h-[2rem] rounded-md flex justify-center items-center hover:bg-green-600 transition-all ease-in-out'>
+                        ยืนยันข้อมูล
+                    </button>
                 </form>
             </div>
         </div>
