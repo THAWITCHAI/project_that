@@ -16,8 +16,9 @@ export async function POST(req: NextRequest) {
                         currency: 'THB',
                         product_data: {
                             name: 'รถยนต์',
+                            description:'สำหรับการจ่ายครั้งคือการมัดจำครึ่งหนึ่งของราคารถคันนี้ อีกครึ่งหนึ่งลูกค้าจะได้จ่ายตอนมารับรถที่บริษัท ทรรศหำน้อย'
                         },
-                        unit_amount: 20000,
+                        unit_amount: (200*100)/2,
                     },
                     quantity: 1,
                 },
