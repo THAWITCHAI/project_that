@@ -63,7 +63,7 @@ export default function AllCars({ }: Props) {
                         <h1 className='w-full text-center p-2 bg-slate-800 text-white'>Honda Civic 2024</h1>
 
                         <AlertDialog >
-                            <AlertDialogTrigger className='w-full flex justify-center items-center'>
+                            <AlertDialogTrigger className='w-full flex justify-center items-center outline-none'>
                                 <button className='w-[70%] my-2 bg-green-500 text-white py-2 flex justify-center items-center gap-2 rounded-sm'>
                                     <Image src={'/image-gallery.png'} width={24} height={24} alt='' />
                                     จองรถ
@@ -105,7 +105,7 @@ export default function AllCars({ }: Props) {
                                 <AlertDialogFooter>
                                     <AlertDialogCancel>ปิด</AlertDialogCancel>
                                     <AlertDialogAction>
-                                        <Link href={'/booking-cars/'+15}>ยืนยัน</Link>
+                                        <Link href={'/booking-cars/' + 15}>ยืนยัน</Link>
                                     </AlertDialogAction>
                                 </AlertDialogFooter>
                             </AlertDialogContent>
