@@ -1,5 +1,6 @@
 'use client'
 
+import { Toaster } from "@/components/ui/sonner";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -209,6 +210,7 @@ export default function RootLayout({
 
                     <div className="w-[84%] h-full p-5 bg-[#f5f5f5]">
                         {children}
+                        <Toaster />
                     </div>
                 </div>
             </body>

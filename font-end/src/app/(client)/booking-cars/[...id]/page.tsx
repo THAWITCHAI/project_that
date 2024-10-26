@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { Input } from '@/components/ui/input'
 
 type Props = object
 
@@ -72,6 +73,10 @@ export default function ConfirmBooking({ }: Props) {
                             onSelect={setDate}
                             className="rounded-md border"
                         />
+                    </div>
+                    <li className='w-full text-sm'>ภาพใบขับขี่</li>
+                    <div className='w-full flex justify-center items-center gap-3'>
+                        <Input type="file" className='w-full bg-gray-50 border font-lights h-[2rem] text-sm rounded-md outline-none text-slate-700 px-2' placeholder='จังหวัด' />
                     </div>
                     <button onClick={handleSubmit} className='bg-green-500 text-white w-1/4 text-center text-sm h-[2rem] rounded-md flex justify-center items-center hover:bg-green-600 transition-all ease-in-out'>
                         ยืนยันข้อมูล
