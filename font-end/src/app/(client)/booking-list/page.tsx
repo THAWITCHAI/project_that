@@ -12,6 +12,18 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import Link from 'next/link'
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { toast } from 'sonner'
 
 type Props = object
 
@@ -37,6 +49,7 @@ interface BookingList {
 
 export default function BookingList({ }: Props) {
     const [data, setData] = useState<BookingList[]>([])
+    const [notes, setReturnCar] = useState("")
 
     useEffect(() => {
         getBookings()
@@ -51,6 +64,33 @@ export default function BookingList({ }: Props) {
             console.error('Error:', error)
         }
     }
+
+    const handleReturn = async (idb: number, idc: number) => {
+
+        if (notes == "") {
+            alert(
+                'กรุณาระบุสาเหตุคืนรถสำหรับการยืนยันการคืนรถ'
+            )
+            return
+        }
+        const formData = new FormData();
+        formData.append('statusId', 3);
+        await fetch(`http://localhost:8000/cars/${idc}`, {
+            method: 'PUT',
+            body: formData
+        })
+        await fetch(`http://localhost:8000/bookingNote/${idb}`, {
+            method: 'PUT',
+            body: JSON.stringify({ notes}),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        getBookings()
+        return
+
+    }
+
     return (
         <div className='w-full h-full flex justify-center items-center gap-2'>
             <Sidebar />
@@ -86,7 +126,24 @@ export default function BookingList({ }: Props) {
                                             item.car.status.id == 4 ?
                                                 <button className='bg-red-500 hover:bg-red-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>ลบ</button>
                                                 :
-                                                <button className='bg-blue-500 hover:bg-blue-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>คืนรถ</button>
+                                                <AlertDialog>
+                                                    <AlertDialogTrigger asChild>
+                                                        <button className='bg-blue-500 hover:bg-blue-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>คืนรถ</button>
+                                                    </AlertDialogTrigger>
+                                                    <AlertDialogContent>
+                                                        <AlertDialogHeader>
+                                                            <AlertDialogTitle>สาเหตุการคืน</AlertDialogTitle>
+                                                            <AlertDialogDescription>
+                                                                <textarea onChange={(e) => setReturnCar(e.target.value)} className='w-full border h-[5rem] rounded-sm p-2' placeholder='ใส่สาเหตุ' name="" id=""></textarea>
+                                                            </AlertDialogDescription>
+                                                        </AlertDialogHeader>
+                                                        <AlertDialogFooter>
+                                                            <AlertDialogCancel className='border-none' asChild>
+                                                                <button onClick={() => handleReturn(item.id, item.carId)} className='w-[5rem] bg-blue-500 hover:bg-blue-600 transition-all ease-in-out text-white h-fit p-2 rounded-sm'>ยืนยัน</button>
+                                                            </AlertDialogCancel>
+                                                        </AlertDialogFooter>
+                                                    </AlertDialogContent>
+                                                </AlertDialog>
 
                                         }
                                         <button className='bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>
@@ -100,11 +157,10 @@ export default function BookingList({ }: Props) {
                     <TableFooter>
                         <TableRow>
                             <TableCell colSpan={7}>Total</TableCell>
-                            <TableCell className="text-right">1 รายการ</TableCell>
+                            <TableCell className="text-right">{data.length} รายการ</TableCell>
                         </TableRow>
                     </TableFooter>
                 </Table>
-
             </div>
         </div>
     )

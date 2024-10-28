@@ -183,7 +183,7 @@ app.put('/cars/:id', upload.single('image'), async (req: any, res: any) => {
         console.log(updatedData);
         const cars = await prisma.cars.update({
             where: {
-                id: id,
+                id: Number(id),
             },
             data: updatedData,
             include: {
@@ -743,7 +743,8 @@ app.get('/bookingsUser/:id', async (req: Request, res: Response) => {
                 },
             }
         })
-        res.status(200).json(bookings?.Booking)
+        const h = bookings?.Booking.filter((item)=>Number(item.car.status.id)==4||item.car.status.id==2)
+        res.status(200).json(h)
     } catch (error) {
         res.status(500).json({
             message: 'เกิดข้อเกิดพลาดในการเรียกดูข้อมูล',
@@ -754,3 +755,26 @@ app.get('/bookingsUser/:id', async (req: Request, res: Response) => {
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
+
+
+app.put('/bookingNote/:id',async(req:Request, res:Response) =>{
+    try{
+        console.log(req.body);
+        const {notes} = req.body
+        const id = Number(req.params.id);
+        const booking = await prisma.booking.update({
+            where:{
+                id:id
+            },
+            data:{
+                notes,
+            }
+        })
+        res.status(200).json(booking)
+    }catch(error){
+        console.log(error);
+        res.status(500).json({
+            message: 'เกิดข้อเกิดพลา��ในการอัปเดตข้อมูล',
+        })
+    }
+})
