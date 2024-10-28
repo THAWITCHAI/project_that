@@ -584,8 +584,17 @@ app.put('/bookings/:id', async (req: any, res: any) => {
                 orderName: 'จ่ายค่าชำระเรียบร้อย'
             },
             include: {
-                car: true,
-                user: true,
+                car:{
+                    include:{
+                        status:true,
+                        type:true
+                    }
+                },
+                user: {
+                    include:{
+                        role: true
+                    }
+                },
             }
         })
         res.status(200).json(booking)

@@ -25,7 +25,7 @@ interface DataAll {
         color: string
         license: string
         price: number
-        typeCar: {
+        type: {
             id: number
             name: string
         }
@@ -51,6 +51,7 @@ export default function Success({ params }: Props) {
         };
         updateBooking();
     }, [id]);
+    console.log(data);
     const timestamp = Date.now();
     const date = new Date(timestamp);
     const days = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"];
@@ -119,7 +120,7 @@ export default function Success({ params }: Props) {
                             </div>
                             <div className='w-full flex px-5 justify-center items-center gap-2'>
                                 <label className='text-xs text-gray-700 w-[6rem]'>ประเภทรถ</label>
-                                <input type="text" className='w-full border rounded-md h-[2.5rem] outline-none px-2 text-xs' disabled defaultValue={''} />
+                                <input type="text" className='w-full border rounded-md h-[2.5rem] outline-none px-2 text-xs' disabled defaultValue={item.car.type.name} />
                             </div>
                             <button className='w-full h-fit p-2 bg-green-500 rounded-md text-white'>
                                 <Link href={'/booking-list'}>กลับไปหน้าข้อมูลจอง</Link>
