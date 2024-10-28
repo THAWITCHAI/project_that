@@ -146,7 +146,7 @@ export default function AllCars({ }: Props) {
                                                     }</p>
                                                 </div>
                                                 <div className='w-full'>
-                                                    <p className='w-fit flex justify-center items-center text-green-500'>สถานะรถ : {item.status.name}</p>
+                                                    <p className='w-fit flex justify-center items-center text-green-500'>สถานะรถ : {item.status.id==2?"กำลังใช้งาน":item.status.name}</p>
                                                 </div>
                                                 <div className='w-full'>
                                                     <p className='w-fit flex justify-center items-center'>ประเภทรถ : {item.type.name} </p>
@@ -167,7 +167,7 @@ export default function AllCars({ }: Props) {
 
 
                                 <div className='w-full h-fit flex justify-between items-center gap-2'>
-                                    <p className='text-end px-2 font-light text-sm text-green-500'>{item.status.name}</p>
+                                    <p className='text-end px-2 font-light text-sm text-green-500'>{item.status.id==2?"กำลังใช้งาน":item.status.name}</p>
                                     <p className='text-end px-2 font-light text-sm text-yellow-600'>จำนวนการใช้รถ {item.useCar}</p>
                                 </div>
                             </Card>

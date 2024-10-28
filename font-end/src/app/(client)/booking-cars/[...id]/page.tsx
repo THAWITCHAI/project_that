@@ -66,7 +66,7 @@ export default function ConfirmBooking({ params }: Props) {
         formData.append('province', province)
         formData.append('zipCode', zipCode)
         formData.append('carId',id)
-        formData.append('userId',9)
+        formData.append('userId',1)
 
         const response = await fetch(`http://localhost:8000/checkout`, {
             method: 'POST',

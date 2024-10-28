@@ -63,11 +63,12 @@ export default function Users({ }: Props) {
     const [dataRoles, setDataRole] = useState<DataRole[]>([])
 
     const [roleId, setRoleId] = useState<number>(0)
-    const [name, setName] = useState<string>("")
     const [nick_name, setNickName] = useState<string>("")
-    const [email, setEmail] = useState<string>("")
+    const [name, setName] = useState<string>("")
     const [phone, setPhone] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
     const [profileImage, setProfile] = useState<File>(null)
+    
     const [search, setSearch] = useState<number>(0)
 
     useEffect(() => {

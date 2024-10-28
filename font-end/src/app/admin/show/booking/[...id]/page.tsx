@@ -116,18 +116,32 @@ export default function Details({ params }: Props) {
             console.error('Error:', error)
         }
     }
+
+    const handleUpdate = async (idCar: number) => {
+        try {
+            const formData = new FormData()
+            formData.append('statusId', 2)
+            const response = await fetch(`http://localhost:8000/cars/${idCar}`, {
+                method: 'PUT',
+                body: formData
+            })
+        } catch (error) {
+            console.error('Error:', error)
+        }
+        return
+    }
     return (
         <div className='w-full h-full flex justify-center items-center gap-2'>
-            <Sidebar />
             <div className='w-[82%] h-full flex flex-col overflow-y-scroll justify-start items-center gap-4 py-10'>
                 {
                     data.map((item, index) => (
-                        <Tabs defaultValue="account" className="w-[60%]">
-                            <TabsList className="grid w-full grid-cols-4">
+                        <Tabs defaultValue="account" className="w-[80%]">
+                            <TabsList className="grid w-full grid-cols-5">
                                 <TabsTrigger value="account">ข้อมูลผู้ใช้</TabsTrigger>
                                 <TabsTrigger value="password">ข้อมูลรถ</TabsTrigger>
                                 <TabsTrigger value="date">วันรับ-คืน รถ</TabsTrigger>
                                 <TabsTrigger value="location">ข้อมูลสถานที่จะไป</TabsTrigger>
+                                <TabsTrigger value="comfirm">ตอบรับการจอง</TabsTrigger>
                             </TabsList>
                             <TabsContent value="account">
                                 <Card>
@@ -286,6 +300,16 @@ export default function Details({ params }: Props) {
                                                 <input type="text" value={item.zipCode} className=' rounded-md px-2  h-[2rem]' disabled />
                                             </div>
                                         </div>
+                                    </CardContent>
+                                </Card>
+                            </TabsContent>
+                            <TabsContent value="comfirm">
+                                <Card>
+                                    <CardHeader>
+                                        <CardTitle className='text-center'>ยืนยันการจอง</CardTitle>
+                                    </CardHeader>
+                                    <CardContent className="flex flex-col justify-start items-center gap-2">
+                                        <button onClick={() => handleUpdate(Number(item.car.id))} className='w-fit px-2 text-white bg-green-500 rounded-sm shadow-xl hover:bg-green-600 transition-all ease-in-out h-full py-1'>กดเพื่อยืนยัน</button>
                                     </CardContent>
                                 </Card>
                             </TabsContent>

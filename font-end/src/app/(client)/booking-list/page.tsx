@@ -1,6 +1,6 @@
 'use client'
 import Sidebar from '@/app/_components/Sidebar'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Table,
     TableBody,
@@ -15,8 +15,42 @@ import Link from 'next/link'
 
 type Props = object
 
+interface BookingList {
+
+    id: number
+    user: {
+        id: number
+        name: string
+    }
+    car: {
+        brand: string
+        model: string
+        status: {
+            id: number
+            name: string
+        }
+    }
+    dateStarted: string
+    dateEnded: string
+}
+
+
 export default function BookingList({ }: Props) {
-    const [toggle, setToggle] = useState(true)
+    const [data, setData] = useState<BookingList[]>([])
+
+    useEffect(() => {
+        getBookings()
+    }, [])
+
+    const getBookings = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/bookingsUser/1')
+            const json = await response.json()
+            setData(json)
+        } catch (error) {
+            console.error('Error:', error)
+        }
+    }
     return (
         <div className='w-full h-full flex justify-center items-center gap-2'>
             <Sidebar />
@@ -35,29 +69,33 @@ export default function BookingList({ }: Props) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow>
-                            <TableCell className="font-medium">#1746</TableCell>
-                            <TableCell>นาย ธวิชชัย บุญส่ง</TableCell>
-                            <TableCell>Honda</TableCell>
-                            <TableCell>Honda Civic 2024</TableCell>
-                            <TableCell>15 ตุลาคม 2567</TableCell>
-                            <TableCell>20 ตุลาคม 2567</TableCell>
-                            <TableCell>
-                                <input type="text" className='border px-2 w-[10rem] h-[2rem] text-yellow-500 rounded-md bg-slate-100 text-center' value={"กำลังดำเนินการ"} disabled/>
-                            </TableCell>
-                            <TableCell className="flex justify-center items-center gap-2">
-                                {
-                                    toggle == true ?
-                                        <button onClick={() => setToggle(!toggle)} className='bg-blue-500 hover:bg-blue-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>คืนรถ</button>
-                                        :
-                                        <button onClick={() => setToggle(!toggle)} className='bg-red-500 hover:bg-red-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>ลบ</button>
+                        {
+                            data.map((item, index) => (
+                                <TableRow key={index}>
+                                    <TableCell className="font-medium">#{item.id}</TableCell>
+                                    <TableCell>{item.user.name}</TableCell>
+                                    <TableCell>{item.car.brand}</TableCell>
+                                    <TableCell>{item.car.model}</TableCell>
+                                    <TableCell>{item.dateStarted}</TableCell>
+                                    <TableCell>{item.dateEnded}</TableCell>
+                                    <TableCell>
+                                        <input type="text" className='border px-2 w-[10rem] h-[2rem] text-yellow-500 rounded-md bg-slate-100 text-center' value={item.car.status.id == 4 ? "กำลังดำเนินการ" : "ยืนยันการจองเรียบร้อย"} disabled />
+                                    </TableCell>
+                                    <TableCell className="flex justify-center items-center gap-2">
+                                        {
+                                            item.car.status.id == 4 ?
+                                                <button className='bg-red-500 hover:bg-red-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>ลบ</button>
+                                                :
+                                                <button className='bg-blue-500 hover:bg-blue-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>คืนรถ</button>
 
-                                }
-                                <button className='bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>
-                                    <Link href={'/booking-list/15'}>รายละเอียด</Link>
-                                </button>
-                            </TableCell>
-                        </TableRow>
+                                        }
+                                        <button className='bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>
+                                            <Link href={'/booking-list/' + item.id}>รายละเอียด</Link>
+                                        </button>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        }
                     </TableBody>
                     <TableFooter>
                         <TableRow>

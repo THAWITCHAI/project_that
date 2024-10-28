@@ -52,6 +52,9 @@ interface DataCar {
     image: string
     createdAt: string
     updatedAt: string
+    Booking: [{
+        orderName: string
+    }]
 }
 
 
@@ -69,6 +72,7 @@ export default function AllCars({ }: Props) {
             .then((res) => res.json())
             .then((res) => setDataCar(res))
     }
+    const carEmpty = dataCar.filter((item) => item.status.id==1)
     return (
         <div className='w-full h-full flex justify-center items-center gap-2'>
             <Sidebar />
@@ -93,7 +97,7 @@ export default function AllCars({ }: Props) {
                 </div>
                 <div className='grid grid-cols-4 gap-4 w-full py-10 px-10'>
                     {
-                        dataCar.map((item, index) => (
+                        carEmpty.map((item, index) => (
                             <Card key={index} className='w-[15rem] rounded-none hover:scale-110 transition-all ease-in-out h-[20rem] shadow-md border gap-2 flex flex-col items-center justify-start overflow-hidden'>
                                 <div className='w-full h-fit overflow-hidden'>
                                     <Image src={`/uploads/${item.image}`} width={600} height={600} alt='' />
@@ -162,6 +166,11 @@ export default function AllCars({ }: Props) {
                             </Card>
                         ))
                     }
+                    {carEmpty.length==0&&(
+                        <div key={0}>
+                            <h1 className='w-full text-center text-slate-500 text-xl'>ไม่มีรถให้จองในขณะนี้</h1>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

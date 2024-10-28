@@ -38,6 +38,7 @@ app.get('/cars', async (req: Request, res: Response) => {
             include: {
                 type: true,
                 status: true,
+                Booking: true
             },
         })
         res.json(cars);
@@ -125,8 +126,11 @@ app.post('/cars', upload.single('image'), async (req: Request, res: Response) =>
 })
 app.put('/cars/:id', upload.single('image'), async (req: any, res: any) => {
     try {
-        const data = req.body;
+        const { statusId } = req.body
         const id = parseInt(req.params.id);
+        console.log(statusId);
+        console.log(id);
+        const data = req.body;
         let updatedData: any = {};
 
         const existingUser = await prisma.cars.findUnique({
@@ -172,6 +176,9 @@ app.put('/cars/:id', upload.single('image'), async (req: any, res: any) => {
         }
         if (data.statusId) {
             Object.assign(updatedData, { statusId: parseInt(data.statusId) }); //รถเก๋ง
+        }
+        if (statusId) {
+            Object.assign(updatedData, { statusId: parseInt(statusId) });
         }
         console.log(updatedData);
         const cars = await prisma.cars.update({
@@ -439,7 +446,7 @@ app.get('/users/:id', async (req: Request, res: Response) => {
             res.json({ message: 'ไม่พบรายการนี้' })
             return
         }
-        res.json(users)
+        res.json([users])
     } catch (error) {
         res.json({ message: 'ไม่พบข้อมูลผู้ใช้ใช้' })
     }
@@ -562,11 +569,48 @@ app.get('/bookings', async (req: Request, res: Response) => {
     try {
         const bookings = await prisma.booking.findMany({
             include: {
-                car: true,
-                user: true,
+                car: {
+                    include: {
+                        status: true,
+                        type: true,
+                    }
+                },
+                user: {
+                    include: {
+                        role: true
+                    }
+                },
             }
         })
         res.status(200).json(bookings)
+    } catch (error) {
+        res.status(500).json({
+            message: 'เกิดข้อเกิดพลาดในการเรียกดูข้อมูล',
+        })
+    }
+})
+app.get('/bookings/:id', async (req: Request, res: Response) => {
+    try {
+        const id = parseInt(req.params.id)
+        const bookings = await prisma.booking.findUnique({
+            where: {
+                id: id
+            },
+            include: {
+                car: {
+                    include: {
+                        status: true,
+                        type: true,
+                    }
+                },
+                user: {
+                    include: {
+                        role: true
+                    }
+                },
+            }
+        })
+        res.status(200).json([bookings])
     } catch (error) {
         res.status(500).json({
             message: 'เกิดข้อเกิดพลาดในการเรียกดูข้อมูล',
@@ -584,19 +628,30 @@ app.put('/bookings/:id', async (req: any, res: any) => {
                 orderName: 'จ่ายค่าชำระเรียบร้อย'
             },
             include: {
-                car:{
-                    include:{
-                        status:true,
-                        type:true
+                car: {
+                    include: {
+                        status: true,
+                        type: true
                     }
                 },
                 user: {
-                    include:{
+                    include: {
                         role: true
                     }
                 },
             }
         })
+        const sum = booking.car.useCar + 1
+        await prisma.cars.update({
+            where: {
+                id: Number(booking.carId),
+            },
+            data: {
+                statusId: 4,
+                useCar: Number(sum)
+            }
+        })
+        console.log(booking);
         res.status(200).json(booking)
     } catch (error) {
         console.log(error);
@@ -663,6 +718,38 @@ app.post('/checkout', upload.single('driverImage'), async (req: any, res: any) =
     }
 });
 
+app.get('/bookingsUser/:id', async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        const bookings = await prisma.user.findUnique({
+            where: {
+                id: parseInt(id)
+            },
+            include: {
+                Booking: {
+                    include: {
+                        car: {
+                            include: {
+                                status: true,
+                                type: true,
+                            }
+                        },
+                        user: {
+                            include: {
+                                role: true
+                            }
+                        },
+                    }
+                },
+            }
+        })
+        res.status(200).json(bookings?.Booking)
+    } catch (error) {
+        res.status(500).json({
+            message: 'เกิดข้อเกิดพลาดในการเรียกดูข้อมูล',
+        })
+    }
+})
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
