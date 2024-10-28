@@ -25,9 +25,9 @@ model Cars {
   price     Float
   statusId  Int
   image     String
-  status    Status    @relation(fields: [statusId], references: [id])
+  status    Status    @relation(fields: [statusId], references: [id], onDelete: Cascade)
   typeId    Int
-  type      Type      @relation(fields: [typeId], references: [id])
+  type      Type      @relation(fields: [typeId], references: [id], onDelete: Cascade)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   Booking   Booking[]
@@ -66,7 +66,7 @@ model User {
   phone        String    @unique
   profileImage String
   roleId       Int
-  role         Role      @relation(fields: [roleId], references: [id])
+  role         Role      @relation(fields: [roleId], references: [id], onDelete: Cascade)
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   Booking      Booking[]
@@ -75,9 +75,9 @@ model User {
 model Booking {
   id            Int      @id @default(autoincrement())
   userId        Int
-  user          User     @relation(fields: [userId], references: [id])
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   carId         Int
-  car           Cars     @relation(fields: [carId], references: [id])
+  car           Cars     @relation(fields: [carId], references: [id], onDelete: Cascade)
   dateStarted   String
   dateEnded     String
   notes         String?
@@ -89,6 +89,8 @@ model Booking {
   district      String
   province      String
   zipCode       String
+  orderId       String   @unique
+  orderName     String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

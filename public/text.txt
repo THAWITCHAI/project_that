@@ -1,0 +1,57 @@
+const handleUpdate = async (id: number) => {
+        const formData = new FormData();
+    
+        if (color !== '#fffff') {
+            formData.append('color', color);
+        }
+        if (brand) {
+            formData.append('brand', brand);
+        }
+        if (model) {
+            formData.append('model', model);
+        }
+        if (seat) {
+            formData.append('seat', seat.toString()); // แปลงเป็น string
+        }
+        if (license) {
+            formData.append('license', license);
+        }
+        if (price) {
+            formData.append('price', price.toString()); // แปลงเป็น string
+        }
+        if (statusCarId) {
+            formData.append('statusId', statusCarId.toString()); // แปลงเป็น string
+        }
+        if (typeCarId) {
+            formData.append('typeId', typeCarId.toString()); // แปลงเป็น string
+        }
+        if (image) {
+            formData.append('image', image);
+        }
+    
+        const res = await fetch(`http://localhost:8000/cars/${id}`)
+    
+        if (!res.ok) {
+            toast.error('แก้ไขข้อมูลไม่สำเร็จ', {
+                action: {
+                    label: 'ปิด',
+                },
+            });
+            return;
+        }
+    
+        toast.success('แก้ไขข้อมูลสำเร็จ', {
+            action: {
+                label: 'ปิด',
+            },
+        });
+        getCar();
+        setBrand('');
+        setModel('');
+        setSeat(0);
+        setColor('#fffff');
+        setLicense('');
+        setPrice('');
+        setStatusCarId(0);
+        setTypeCarId(0);
+    };

@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import {
     Select,
@@ -9,7 +10,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Card,
     CardContent,
@@ -31,11 +32,43 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+interface DataCar {
+    id: number
+    brand: string
+    model: string
+    useCar: number
+    seat: number
+    color: string
+    license: string
+    price: number
+    status: {
+        id: number
+        name: string
+    }
+    type: {
+        id: number
+        name: string
+    }
+    image: string
+    createdAt: string
+    updatedAt: string
+}
 
 
 type Props = object
 
 export default function AllCars({ }: Props) {
+    const [dataCar, setDataCar] = useState<DataCar[]>([])
+
+    useEffect(() => {
+        getAllCar()
+    }, [])
+
+    async function getAllCar() {
+        await fetch(`http://localhost:8000/cars`)
+            .then((res) => res.json())
+            .then((res) => setDataCar(res))
+    }
     return (
         <div className='w-full h-full flex justify-center items-center gap-2'>
             <Sidebar />
@@ -73,62 +106,73 @@ export default function AllCars({ }: Props) {
                     </Select>
                 </div>
                 <div className='grid grid-cols-4 gap-4 w-full py-10 px-10'>
-                    <Card className='w-[15rem] rounded-none hover:scale-110 transition-all ease-in-out h-[20rem] shadow-md border gap-2 flex flex-col items-center justify-start overflow-hidden'>
-                        <Image src={'/car_item.png'} width={600} height={600} alt='' />
-                        <h1 className='w-full text-center p-2 bg-slate-800 text-white'>Honda Civic 2024</h1>
-
-                        <AlertDialog>
-                            <AlertDialogTrigger className='w-fullh-fit outline-none'>
-                                <div className='w-full px-2 my-2 bg-green-500 text-white py-2 flex justify-center items-center gap-2 rounded-sm'>
-                                    <Image src={'/see-white.png'} width={24} height={24} alt='' />
-                                    ดูรายละเอียดรถ
+                    {
+                        dataCar.map((item, index) => (
+                            <Card key={index} className='w-full rounded-none hover:scale-110 transition-all ease-in-out h-[20rem] shadow-md border gap-2 flex flex-col items-center justify-start overflow-hidden'>
+                                <div className='w-full h-fit overflow-hidden'>
+                                    <Image src={`/uploads/${item.image}`} width={600} height={600} alt='' />
                                 </div>
-                            </AlertDialogTrigger>
-                            <AlertDialogContent>
-                                <AlertDialogHeader>
-                                    <AlertDialogTitle>รายละเอียดรถ</AlertDialogTitle>
-                                    <AlertDialogDescription className='flex justify-center items-center flex-col gap-2'>
-                                        <div className='w-full'>
-                                            <p className='w-fit flex justify-center items-center'>แบรนด์ : Honda</p>
+                                <h1 className='w-full text-center p-2 bg-slate-800 text-white'>{item.brand}</h1>
+
+                                <AlertDialog>
+                                    <AlertDialogTrigger className='w-fullh-fit outline-none'>
+                                        <div className='w-full px-2 my-2 bg-green-500 text-white py-2 flex justify-center items-center gap-2 rounded-sm'>
+                                            <Image src={'/see-white.png'} width={24} height={24} alt='' />
+                                            ดูรายละเอียดรถ
                                         </div>
-                                        <div className='w-full'>
-                                            <p className='w-fit flex justify-center items-center'>รุ่น : Honda Civic 2026</p>
-                                        </div>
-                                        <div className='w-full'>
-                                            <p className='w-fit flex justify-center items-center gap-2'>สี : <div className='w-[1.5rem] h-[1.5rem] rounded-full bg-red-500'></div></p>
-                                        </div>
-                                        <div className='w-full'>
-                                            <p className='w-fit flex justify-center items-center '>ป้ายทะเบียน : 56 คย อุบลราชธานี</p>
-                                        </div>
-                                        <div className='w-full'>
-                                            <p className='w-fit flex justify-center items-center text-green-500'>ราคา : 5000฿</p>
-                                        </div>
-                                        <div className='w-full'>
-                                            <p className='w-fit flex justify-center items-center text-green-500'>สถานะรถ : พร้อมใช้งาน</p>
-                                        </div>
-                                        <div className='w-full'>
-                                            <p className='w-fit flex justify-center items-center'>ประเภทรถ : รถยนต์</p>
-                                        </div>
-                                        <div className='w-full'>
-                                            <p className='w-fit flex justify-center items-center text-blue-500'>จำนวนการใช้งาน : 15 ครั้ง</p>
-                                        </div>
-                                        <div className='w-full'>
-                                            <p className='w-fit flex justify-center items-center'>ที่นั่ง : 6 ที่</p>
-                                        </div>
-                                    </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                    <AlertDialogCancel className='outline-none'>ปิด</AlertDialogCancel>
-                                </AlertDialogFooter>
-                            </AlertDialogContent>
-                        </AlertDialog>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>รายละเอียดรถ</AlertDialogTitle>
+                                            <AlertDialogDescription className='flex justify-center items-center flex-col gap-2'>
+                                                <div className='w-full'>
+                                                    <p className='w-fit flex justify-center items-center'>แบรนด์ : {item.brand}</p>
+                                                </div>
+                                                <div className='w-full'>
+                                                    <p className='w-fit flex justify-center items-center'>รุ่น : {item.model}</p>
+                                                </div>
+                                                <div className='w-full'>
+                                                    <p className='w-fit flex justify-center items-center gap-2'>สี : <div className='w-[1.5rem] h-[1.5rem] rounded-full' style={{ background: item.color }}></div></p>
+                                                </div>
+                                                <div className='w-full'>
+                                                    <p className='w-fit flex justify-center items-center '>ป้ายทะเบียน : {item.license}</p>
+                                                </div>
+                                                <div className='w-full'>
+                                                    <p className='w-fit flex justify-center items-center text-green-500'>ราคา : {
+                                                        Intl.NumberFormat('th-TH', {
+                                                            style: 'currency',
+                                                            currency: 'THB',
+                                                        }).format(item.price)
+                                                    }</p>
+                                                </div>
+                                                <div className='w-full'>
+                                                    <p className='w-fit flex justify-center items-center text-green-500'>สถานะรถ : {item.status.name}</p>
+                                                </div>
+                                                <div className='w-full'>
+                                                    <p className='w-fit flex justify-center items-center'>ประเภทรถ : {item.type.name} </p>
+                                                </div>
+                                                <div className='w-full'>
+                                                    <p className='w-fit flex justify-center items-center text-blue-500'>จำนวนการใช้งาน : {item.useCar} ครั้ง</p>
+                                                </div>
+                                                <div className='w-full'>
+                                                    <p className='w-fit flex justify-center items-center'>ที่นั่ง : {item.seat} ที่</p>
+                                                </div>
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel className='outline-none'>ปิด</AlertDialogCancel>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
 
 
-                        <div className='w-full h-fit flex justify-between items-center gap-2'>
-                            <p className='text-end px-2 font-light text-sm text-green-500'>กำลังใช้งาน</p>
-                            <p className='text-end px-2 font-light text-sm text-yellow-600'>จำนวนการใช้รถ 12</p>
-                        </div>
-                    </Card>
+                                <div className='w-full h-fit flex justify-between items-center gap-2'>
+                                    <p className='text-end px-2 font-light text-sm text-green-500'>{item.status.name}</p>
+                                    <p className='text-end px-2 font-light text-sm text-yellow-600'>จำนวนการใช้รถ {item.useCar}</p>
+                                </div>
+                            </Card>
+                        ))
+                    }
                 </div>
             </div>
         </div>
