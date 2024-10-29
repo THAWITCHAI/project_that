@@ -146,12 +146,12 @@ export default function BookingList({ }: Props) {
                                     </TableCell>
                                     <TableCell className="flex justify-center items-center gap-2">
                                         {
-                                            item.car.status.id == 4 ?
-                                                <button onClick={() => handleDelete(item.id, item.car.id)} className='bg-red-500 hover:bg-red-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>ลบ</button>
+                                            item.car.status.id != 4 ?
+                                                <button onClick={() => handleDelete(item.id, item.car.id)} className='bg-blue-500 hover:bg-blue-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>คืนรถ</button>
                                                 :
                                                 <AlertDialog>
                                                     <AlertDialogTrigger asChild>
-                                                        <button className='bg-blue-500 hover:bg-blue-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>คืนรถ</button>
+                                                        <button className='bg-red-500 hover:bg-red-600 transition-all ease-in-out w-[6rem] text-white h-fit p-2 rounded-sm'>ยกเลิการจอง</button>
                                                     </AlertDialogTrigger>
                                                     <AlertDialogContent>
                                                         <AlertDialogHeader>
