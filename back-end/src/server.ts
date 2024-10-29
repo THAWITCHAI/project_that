@@ -694,8 +694,8 @@ app.post('/checkout', upload.single('driverImage'), async (req: any, res: any) =
                 },
             ],
             mode: 'payment',
-            success_url: `${req.headers['origin'] || 'http://localhost:3000'}/success/${orderId}`,
-            cancel_url: `${req.headers['origin'] || 'http://localhost:3000'}/booking-cars/${orderId}`,
+            success_url: `${req.headers['origin'] || 'http://localhost:3000'}/client/success/${orderId}`,
+            cancel_url: `${req.headers['origin'] || 'http://localhost:3000'}/client/booking-cars/${orderId}`,
         });
 
         const updateData = Object.assign({},
@@ -743,7 +743,7 @@ app.get('/bookingsUser/:id', async (req: Request, res: Response) => {
                 },
             }
         })
-        const h = bookings?.Booking.filter((item)=>Number(item.car.status.id)==4||item.car.status.id==2)
+        const h = bookings?.Booking.filter((item) => Number(item.car.status.id) == 4 || item.car.status.id == 2)
         res.status(200).json(h)
     } catch (error) {
         res.status(500).json({
@@ -757,24 +757,99 @@ app.listen(port, () => {
 });
 
 
-app.put('/bookingNote/:id',async(req:Request, res:Response) =>{
-    try{
+app.put('/bookingNote/:id', async (req: Request, res: Response) => {
+    try {
         console.log(req.body);
-        const {notes} = req.body
+        const { notes } = req.body
         const id = Number(req.params.id);
         const booking = await prisma.booking.update({
-            where:{
-                id:id
+            where: {
+                id: id
             },
-            data:{
+            data: {
                 notes,
             }
         })
         res.status(200).json(booking)
-    }catch(error){
+    } catch (error) {
         console.log(error);
         res.status(500).json({
             message: 'เกิดข้อเกิดพลา��ในการอัปเดตข้อมูล',
+        })
+    }
+})
+
+app.delete('/bookings/:id', async (req: any, res: any) => {
+    try {
+        const id = req.params.id
+        const image = await prisma.booking.findUnique({
+            where: {
+                id: parseInt(id)
+            },
+        })
+
+        if (!image) {
+            return res.status(404).json({ error: 'ไม่พบภาพ' });
+        }
+
+        // สร้างเส้นทางไฟล์
+        const filePath = path.join('../font-end/public/uploads', image.driverImage);
+        console.log('File path:', filePath);
+
+        await prisma.booking.delete({
+            where: { id: parseInt(id) },
+        });
+
+        // ตรวจสอบว่าไฟล์มีอยู่จริง
+        if (fs.existsSync(filePath)) {
+            // ลบไฟล์จากระบบไฟล์
+            fs.unlink(filePath, (err) => {
+                if (err) {
+                    console.error(`ลบไฟล์ไม่สำเร็จ: ${err}`);
+                    return res.status(500).json({ error: 'ไม่สามารถลบไฟล์ได้' });
+                }
+                res.json({ success: 'ลบภาพเรียบร้อยแล้ว' });
+            });
+        } else {
+            console.error('ไฟล์ไม่พบ:', filePath);
+            return res.status(404).json({ error: 'ไฟล์ไม่พบ' });
+        }
+    } catch (error) {
+        res.json({ message: 'ไม่พบรายการนี้' })
+    }
+})
+
+app.post('/login', async (req: Request, res: Response) => {
+    try {
+        const { email, password } = req.body
+        console.log({
+            email,
+            password
+        });
+
+        const user = await prisma.user.findUnique({
+            where: {
+                email,
+                password
+            },
+            include: {
+                role:true,
+                // Booking:{
+                //     include:{
+                //         car:{
+                //             include:{
+                //                 status:true,
+                //                 type:true,
+                //             }
+                //         }
+                //     }
+                // }
+            }
+        })
+        res.json(user)
+    } catch (error) {
+        res.status(404).json({
+            message: 'ไม่พบข้อมูลผู้ใช้'
         })
     }
 })

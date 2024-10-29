@@ -15,7 +15,7 @@ export default function Success({ }: Props) {
                     <p className='text-gray-500 text-sm font-light'>รหัสอ้างอิง dfac1552-eb07-4e25-976f-c05478ee3289</p>
 
                     <button className='w-full h-fit p-2 bg-green-500 rounded-md text-white'>
-                        <Link href={'/booking-cars'}>กลับไปหน้าจองรถ</Link>
+                        <Link href={'/client/booking-cars'}>กลับไปหน้าจองรถ</Link>
                     </button>
                 </div>
             </div>

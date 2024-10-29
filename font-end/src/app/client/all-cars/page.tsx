@@ -75,7 +75,7 @@ export default function AllCars({ }: Props) {
         <div className='w-full h-full flex justify-center items-center gap-2'>
             <Sidebar />
             <div className='w-[82%] h-full flex flex-col overflow-y-scroll'>
-                <div className='w-full h-fit py-5 px-2 flex flex-col justify-center items-end gap-2'>
+                {/* <div className='w-full h-fit py-5 px-2 flex flex-col justify-center items-end gap-2'>
                     <Select >
                         <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="เลือกประเภทรถ" />
@@ -106,7 +106,7 @@ export default function AllCars({ }: Props) {
                             </SelectGroup>
                         </SelectContent>
                     </Select>
-                </div>
+                </div> */}
                 <div className='grid grid-cols-4 gap-4 w-full py-10 px-10'>
                     {
                         dataCar.length > 0 && (

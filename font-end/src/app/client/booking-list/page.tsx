@@ -24,6 +24,7 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { toast } from 'sonner'
+import { useSession } from 'next-auth/react'
 
 type Props = object
 
@@ -50,6 +51,7 @@ interface BookingList {
 export default function BookingList({ }: Props) {
     const [data, setData] = useState<BookingList[]>([])
     const [notes, setReturnCar] = useState("")
+    const { data: session } = useSession()
 
     useEffect(() => {
         getBookings()
@@ -57,7 +59,7 @@ export default function BookingList({ }: Props) {
 
     const getBookings = async () => {
         try {
-            const response = await fetch('http://localhost:8000/bookingsUser/1')
+            const response = await fetch('http://localhost:8000/bookingsUser/' + session?.user.id)
             const json = await response.json()
             setData(json)
         } catch (error) {
@@ -81,7 +83,7 @@ export default function BookingList({ }: Props) {
         })
         await fetch(`http://localhost:8000/bookingNote/${idb}`, {
             method: 'PUT',
-            body: JSON.stringify({ notes}),
+            body: JSON.stringify({ notes }),
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -89,6 +91,27 @@ export default function BookingList({ }: Props) {
         getBookings()
         return
 
+    }
+
+    const handleDelete = async (idBooking: number, idCar: number) => {
+        const res = await fetch(`http://localhost:8000/bookings/${idBooking}`, {
+            method: 'DELETE',
+        })
+        await fetch(`http://localhost:8000/cars/${idCar}`, {
+            method: 'PUT',
+            body: JSON.stringify({ statusId: 1 }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        if (res.ok) {
+            toast.success('ลบข้อมูลการจองรถสำเร็จ', {
+                action: 'ปิด'
+            })
+            getBookings()
+            return
+        }
+        return
     }
 
     return (
@@ -124,7 +147,7 @@ export default function BookingList({ }: Props) {
                                     <TableCell className="flex justify-center items-center gap-2">
                                         {
                                             item.car.status.id == 4 ?
-                                                <button className='bg-red-500 hover:bg-red-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>ลบ</button>
+                                                <button onClick={() => handleDelete(item.id, item.car.id)} className='bg-red-500 hover:bg-red-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>ลบ</button>
                                                 :
                                                 <AlertDialog>
                                                     <AlertDialogTrigger asChild>
@@ -147,7 +170,7 @@ export default function BookingList({ }: Props) {
 
                                         }
                                         <button className='bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out w-[5rem] text-white h-fit p-2 rounded-sm'>
-                                            <Link href={'/booking-list/' + item.id}>รายละเอียด</Link>
+                                            <Link href={'/client/booking-list/' + item.id}>รายละเอียด</Link>
                                         </button>
                                     </TableCell>
                                 </TableRow>

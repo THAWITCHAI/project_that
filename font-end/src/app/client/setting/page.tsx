@@ -14,6 +14,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { useSession } from 'next-auth/react'
 
 type Props = object
 
@@ -27,13 +28,15 @@ export default function Setting({ }: Props) {
     const [password, setPassword] = useState<string>("")
     const [profileImage, setProfile] = useState<File>(null)
 
+    const {data:session} = useSession()
+
 
     useEffect(() => {
         getDataUser()
     }, [])
 
     const getDataUser = async () => {
-        const response = await fetch('http://localhost:8000/users/9')
+        const response = await fetch('http://localhost:8000/users/'+session?.user.id)
         if (response.ok) {
             const data = await response.json()
             setDataUser(data)

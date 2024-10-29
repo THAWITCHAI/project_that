@@ -141,7 +141,7 @@ export default function Details({ params }: Props) {
                                 <TabsTrigger value="password">ข้อมูลรถ</TabsTrigger>
                                 <TabsTrigger value="date">วันรับ-คืน รถ</TabsTrigger>
                                 <TabsTrigger value="location">ข้อมูลสถานที่จะไป</TabsTrigger>
-                                <TabsTrigger value="comfirm">ตอบรับการจอง</TabsTrigger>
+                                <TabsTrigger value="comfirm">{item.car.status.id == 3 ? "สาเหตุการคืนรถ" : "ตอบรับการจอง"}</TabsTrigger>
                             </TabsList>
                             <TabsContent value="account">
                                 <Card>
@@ -309,7 +309,14 @@ export default function Details({ params }: Props) {
                                         <CardTitle className='text-center'>ยืนยันการจอง</CardTitle>
                                     </CardHeader>
                                     <CardContent className="flex flex-col justify-start items-center gap-2">
+                                        {
+                                            item.car.status.id == 3?
+                                            <div className='w-full h-fit p-2 text-center'>
+                                                {item.notes}
+                                            </div>
+                                        :
                                         <button onClick={() => handleUpdate(Number(item.car.id))} className='w-fit px-2 text-white bg-green-500 rounded-sm shadow-xl hover:bg-green-600 transition-all ease-in-out h-full py-1'>กดเพื่อยืนยัน</button>
+                                        }
                                     </CardContent>
                                 </Card>
                             </TabsContent>

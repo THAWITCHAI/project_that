@@ -40,7 +40,7 @@ export default function Success({ params }: Props) {
     useEffect(() => {
         const updateBooking = async () => {
             try {
-                await fetch(`http://localhost:8000/bookings/${id}`, {
+                await fetch(`http://localhost:8000/client/bookings/${id}`, {
                     method: 'PUT',
                 })
                     .then((res) => res.json())

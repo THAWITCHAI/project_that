@@ -72,12 +72,12 @@ export default function AllCars({ }: Props) {
             .then((res) => res.json())
             .then((res) => setDataCar(res))
     }
-    const carEmpty = dataCar.filter((item) => item.status.id==1)
+    const carEmpty = dataCar.filter((item) => item.status.id == 1)
     return (
         <div className='w-full h-full flex justify-center items-center gap-2'>
             <Sidebar />
             <div className='w-[82%] h-full flex flex-col overflow-y-scroll'>
-                <div className='w-full h-fit py-5 px-2 flex flex-col justify-center items-end gap-2'>
+                {/* <div className='w-full h-fit py-5 px-2 flex flex-col justify-center items-end gap-2'>
                     <Select >
                         <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="เลือกประเภทรถ" />
@@ -94,7 +94,7 @@ export default function AllCars({ }: Props) {
                             </SelectGroup>
                         </SelectContent>
                     </Select>
-                </div>
+                </div> */}
                 <div className='grid grid-cols-4 gap-4 w-full py-10 px-10'>
                     {
                         carEmpty.map((item, index) => (
@@ -143,7 +143,7 @@ export default function AllCars({ }: Props) {
                                                     <p className='w-fit flex justify-center items-center'>ประเภทรถ : {item.type.name}</p>
                                                 </div>
                                                 <div className='w-full'>
-                                                    <p className='w-fit flex justify-center items-center text-blue-500'>จำนวนการใช้งาน : {item.useCar} ครั้ง</p>
+                                                    <p className='w-fit flex justify-center items-center text-blue-500'>จำนวนการใช้งาน : {item.useCar}</p>
                                                 </div>
                                                 <div className='w-full'>
                                                     <p className='w-fit flex justify-center items-center'>ที่นั่งจำนวน : {item.seat} ที่นั่ง</p>
@@ -153,7 +153,7 @@ export default function AllCars({ }: Props) {
                                         <AlertDialogFooter>
                                             <AlertDialogCancel>ปิด</AlertDialogCancel>
                                             <AlertDialogAction>
-                                                <Link href={'/booking-cars/' + item.id}>ยืนยัน</Link>
+                                                <Link href={'/client/booking-cars/' + item.id}>ยืนยัน</Link>
                                             </AlertDialogAction>
                                         </AlertDialogFooter>
                                     </AlertDialogContent>
@@ -161,12 +161,12 @@ export default function AllCars({ }: Props) {
 
                                 <div className='w-full h-fit flex justify-between items-center gap-2 py-2'>
                                     <p className='text-end px-2 font-light text-sm text-green-500'>ราคา 5000฿</p>
-                                    <p className='text-end px-2 font-light text-sm text-yellow-600'>จำนวนการใช้รถ 12</p>
+                                    <p className='text-end px-2 font-light text-sm text-yellow-600'>จำนวนการใช้รถ {item.useCar}</p>
                                 </div>
                             </Card>
                         ))
                     }
-                    {carEmpty.length==0&&(
+                    {carEmpty.length == 0 && (
                         <div key={0}>
                             <h1 className='w-full text-center text-slate-500 text-xl'>ไม่มีรถให้จองในขณะนี้</h1>
                         </div>

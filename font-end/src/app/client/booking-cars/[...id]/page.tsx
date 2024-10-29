@@ -17,10 +17,12 @@ import {
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Input } from '@/components/ui/input'
+import { useSession } from 'next-auth/react'
 
 type Props = object
 
 export default function ConfirmBooking({ params }: Props) {
+    const { data: session } = useSession()
     const { id } = params
     const [dateStarted, setDateStarted] = useState("")
     const [dateEnded, setDateEnded] = useState("")
@@ -65,8 +67,8 @@ export default function ConfirmBooking({ params }: Props) {
         formData.append('district', district)
         formData.append('province', province)
         formData.append('zipCode', zipCode)
-        formData.append('carId',id)
-        formData.append('userId',1)
+        formData.append('carId', id)
+        formData.append('userId', Number(session?.user.id))
 
         const response = await fetch(`http://localhost:8000/checkout`, {
             method: 'POST',
