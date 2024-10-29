@@ -98,7 +98,7 @@ export default function AllCars({ }: Props) {
                 <div className='grid grid-cols-4 gap-4 w-full py-10 px-10'>
                     {
                         carEmpty.map((item, index) => (
-                            <Card key={index} className='w-[15rem] rounded-none hover:scale-110 transition-all ease-in-out h-[20rem] shadow-md border gap-2 flex flex-col items-center justify-start overflow-hidden'>
+                            <Card key={index} className='w-[15rem] rounded-none hover:scale-110 transition-all ease-in-out h-[20rem] shadow-md border gap-2 flex flex-col items-center justify-between overflow-hidden'>
                                 <div className='w-full h-fit overflow-hidden'>
                                     <Image src={`/uploads/${item.image}`} width={600} height={600} alt='' />
                                 </div>
@@ -160,7 +160,7 @@ export default function AllCars({ }: Props) {
                                 </AlertDialog>
 
                                 <div className='w-full h-fit flex justify-between items-center gap-2 py-2'>
-                                    <p className='text-end px-2 font-light text-sm text-green-500'>ราคา 5000฿</p>
+                                    <p className='text-end px-2 font-light text-sm text-green-500'>ราคา {item.price}฿</p>
                                     <p className='text-end px-2 font-light text-sm text-yellow-600'>จำนวนการใช้รถ {item.useCar}</p>
                                 </div>
                             </Card>
