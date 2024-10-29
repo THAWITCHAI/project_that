@@ -833,7 +833,7 @@ app.post('/login', async (req: Request, res: Response) => {
                 password
             },
             include: {
-                role:true,
+                role: true,
                 // Booking:{
                 //     include:{
                 //         car:{

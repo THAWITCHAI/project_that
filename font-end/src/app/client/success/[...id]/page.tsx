@@ -40,7 +40,7 @@ export default function Success({ params }: Props) {
     useEffect(() => {
         const updateBooking = async () => {
             try {
-                await fetch(`http://localhost:8000/client/bookings/${id}`, {
+                await fetch(`http://localhost:8000/bookings/${id}`, {
                     method: 'PUT',
                 })
                     .then((res) => res.json())
@@ -123,7 +123,7 @@ export default function Success({ params }: Props) {
                                 <input type="text" className='w-full border rounded-md h-[2.5rem] outline-none px-2 text-xs' disabled defaultValue={item.car.type.name} />
                             </div>
                             <button className='w-full h-fit p-2 bg-green-500 rounded-md text-white'>
-                                <Link href={'/booking-list'}>กลับไปหน้าข้อมูลจอง</Link>
+                                <Link href={'/client/booking-list'}>กลับไปหน้าข้อมูลจอง</Link>
                             </button>
                         </div>
                     </div>
