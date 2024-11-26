@@ -656,7 +656,7 @@ app.put('/bookings/:id', async (req: any, res: any) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            message: 'เกิดข้อเกิดพลา��ในการอัปเดตข้อมูล',
+            message: 'เกิดข้อเกิดพลาดในการอัปเดตข้อมูล',
         })
     }
 })
@@ -774,7 +774,7 @@ app.put('/bookingNote/:id', async (req: Request, res: Response) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            message: 'เกิดข้อเกิดพลา��ในการอัปเดตข้อมูล',
+            message: 'เกิดข้อเกิดพลาดในการอัปเดตข้อมูล',
         })
     }
 })
