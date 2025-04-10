@@ -28,7 +28,8 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
-app.use(express.json())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
 // Cars
@@ -821,35 +822,28 @@ app.delete('/bookings/:id', async (req: any, res: any) => {
 
 app.post('/login', async (req: Request, res: Response) => {
     try {
-        const { email, password } = req.body
-        console.log({
-            email,
-            password
-        });
-
-        const user = await prisma.user.findUnique({
-            where: {
-                email,
-                password
-            },
-            include: {
-                role: true,
-                // Booking:{
-                //     include:{
-                //         car:{
-                //             include:{
-                //                 status:true,
-                //                 type:true,
-                //             }
-                //         }
-                //     }
-                // }
-            }
-        })
-        res.json(user)
+      const { email, password } = req.body;
+  
+      console.log({ email, password });
+  
+      const user = await prisma.user.findFirst({
+        where: {
+          email,
+          password
+        },
+        include: {
+          role: true
+        }
+      });
+  
+      if (!user) {
+        return res.status(404).json({ message: 'ไม่พบผู้ใช้หรือรหัสผ่านไม่ถูกต้อง' });
+      }
+  
+      res.json(user);
     } catch (error) {
-        res.status(404).json({
-            message: 'ไม่พบข้อมูลผู้ใช้'
-        })
+      console.error(error);
+      res.status(500).json({ message: 'เกิดข้อผิดพลาดในเซิร์ฟเวอร์' });
     }
-})
+  });
+  
