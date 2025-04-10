@@ -32,6 +32,54 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
+// app.post('/login', async (req: Request, res: Response) => {
+//     try {
+//       
+
+//       console.log({ email, password });
+
+//       const user = await prisma.user.findFirst({
+//         where: {
+//           email,
+//           password
+//         },
+//         include: {
+//           role: true
+//         }
+//       });
+
+//       if (!user) {
+//         return res.status(404).json({ message: 'ไม่พบผู้ใช้หรือรหัสผ่านไม่ถูกต้อง' });
+//       }
+
+//       res.json(user);
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ message: 'เกิดข้อผิดพลาดในเซิร์ฟเวอร์' });
+//     }
+//   });
+
+app.post('/login', async (req: Request, res: Response) => {
+    try {
+        const { email, password } = req.body;
+        console.log({ email, password });
+        const users = await prisma.user.findFirst({
+            where: {
+                email,
+                password
+            },
+            include: {
+                role: true
+            }
+        })
+
+        console.log(users);
+        res.status(200).json(users)
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'เกิดข้อผิดพลาดในเซิร์ฟเวอร์' });
+    }
+})
 // Cars
 app.get('/cars', async (req: Request, res: Response) => {
     try {
@@ -753,9 +801,6 @@ app.get('/bookingsUser/:id', async (req: Request, res: Response) => {
     }
 })
 
-app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
-});
 
 
 app.put('/bookingNote/:id', async (req: Request, res: Response) => {
@@ -820,30 +865,6 @@ app.delete('/bookings/:id', async (req: any, res: any) => {
     }
 })
 
-app.post('/login', async (req: Request, res: Response) => {
-    try {
-      const { email, password } = req.body;
-  
-      console.log({ email, password });
-  
-      const user = await prisma.user.findFirst({
-        where: {
-          email,
-          password
-        },
-        include: {
-          role: true
-        }
-      });
-  
-      if (!user) {
-        return res.status(404).json({ message: 'ไม่พบผู้ใช้หรือรหัสผ่านไม่ถูกต้อง' });
-      }
-  
-      res.json(user);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'เกิดข้อผิดพลาดในเซิร์ฟเวอร์' });
-    }
-  });
-  
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+});
